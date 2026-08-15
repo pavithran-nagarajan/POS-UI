@@ -6,18 +6,18 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('./features/auth/login/login.component').then(m => m.LoginComponent)
+      import('./features/auth/login/login').then(m => m.LoginComponent)
   },
   {
     path: 'dashboard',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent)
+      import('./features/dashboard/dashboard').then(m => m.DashboardComponent)
   },
   {
     path: 'not-found',
     loadComponent: () =>
-      import('./pages/not-found/not-found.component').then(m => m.NotFoundComponent)
+      import('./pages/not-found/not-found').then(m => m.NotFoundComponent)
   },
   { path: '**', redirectTo: 'not-found' } // wildcard MUST be last
 ];
