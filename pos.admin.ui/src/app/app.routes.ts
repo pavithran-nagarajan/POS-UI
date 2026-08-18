@@ -1,23 +1,38 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import { AuthLayout } from './layout/auth-layout/auth-layout';
+import { MainLayout } from './layout/main-layout/main-layout';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // Public area — auth layout (blank chrome)
   {
-    path: 'login',
-    loadComponent: () =>
-      import('./features/auth/login/login').then(m => m.LoginComponent)
+    path: '',
+    component: AuthLayout,
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./pages/login/login').then(m => m.LoginComponent)
+      },
+      {
+        path: 'not-found',
+        loadComponent: () =>
+          import('./pages/not-found/not-found').then(m => m.NotFoundComponent)
+      }
+    ]
   },
+  // Protected area — main layout (nav + sidebar)
   {
-    path: 'dashboard',
-    canActivate: [authGuard],
-    loadComponent: () =>
-      import('./features/dashboard/dashboard').then(m => m.DashboardComponent)
+    path: '',
+    component: MainLayout,
+    children: [
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./pages/dashboard/dashboard').then(m => m.DashboardComponent)
+      }
+    ]
   },
-  {
-    path: 'not-found',
-    loadComponent: () =>
-      import('./pages/not-found/not-found').then(m => m.NotFoundComponent)
-  },
-  { path: '**', redirectTo: 'not-found' } // wildcard MUST be last
+  { path: '**', redirectTo: 'not-found' }
 ];
