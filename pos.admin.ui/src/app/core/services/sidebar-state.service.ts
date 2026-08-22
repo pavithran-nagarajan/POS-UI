@@ -7,7 +7,7 @@ export class SidebarStateService {
 
   open(): void {
     this.isOpen = true;
-    document.body.classList.add('sidebar-open'); // adjust to your AdminLTE class
+    document.body.classList.add('sidebar-open');
   }
 
   close(): void {
