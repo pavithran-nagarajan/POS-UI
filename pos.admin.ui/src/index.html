@@ -8,78 +8,11 @@
   <meta name="title" content="AdminLTE v4 | Dashboard" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 
-  <script>
-    (() => {
-      'use strict';
-      const root = document.documentElement;
-
-      // Applications with their own theming opt out of AdminLTE's color mode
-      // entirely, here as well as in the bundle.
-      if (root.getAttribute('data-lte-color-mode') === 'off') {
-        return;
-      }
-
-      const STORAGE_KEY = 'lte-theme';
-      let stored = null;
-      try {
-        stored = localStorage.getItem(STORAGE_KEY);
-      } catch {
-        // localStorage may be unavailable (private mode, sandboxed iframe).
-      }
-      // Mirror the precedence in color-mode.ts: the visitor's stored choice
-      // wins, then a theme this page declared itself, then the OS preference.
-      const authored = root.getAttribute('data-bs-theme');
-      let resolved = 'light';
-      if (stored === 'dark' || stored === 'light') {
-        resolved = stored;
-      } else if (authored === 'dark' || authored === 'light') {
-        resolved = authored;
-      } else if (globalThis.matchMedia('(prefers-color-scheme: dark)').matches) {
-        resolved = 'dark';
-      }
-      root.setAttribute('data-bs-theme', resolved);
-      root.style.colorScheme = resolved;
-      // Flag values computed here, so the bundle does not mistake them for a
-      // theme the page declared and stop following the OS preference.
-      if (resolved !== authored) {
-        root.setAttribute('data-lte-theme-resolved', '');
-      }
-    })();
-  </script>
 </head>
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
   <div class="app-wrapper">
     <app-root></app-root>
   </div>
-  <script>
-    const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
-    const Default = {
-      scrollbarTheme: 'os-theme-light',
-      scrollbarAutoHide: 'leave',
-      scrollbarClickScroll: true,
-    };
-    document.addEventListener('DOMContentLoaded', function () {
-      const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
-
-      // Disable OverlayScrollbars on mobile devices to prevent touch interference
-      const isMobile = window.innerWidth <= 992;
-
-      if (
-        sidebarWrapper &&
-        OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined &&
-        !isMobile
-      ) {
-        OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
-          scrollbars: {
-            theme: Default.scrollbarTheme,
-            autoHide: Default.scrollbarAutoHide,
-            clickScroll: Default.scrollbarClickScroll,
-          },
-        });
-      }
-    });
-  </script>
 </body>
-
 </html>
