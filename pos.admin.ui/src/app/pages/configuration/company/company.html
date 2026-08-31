@@ -1,4 +1,4 @@
 <div class="grid-toolbar">
   <app-search-box (searchChange)="onSearchChange($event)" />
 </div>
-<app-data-grid [columnDefs]="columnDefs" [rowData]="rowData" />
+<app-data-grid [columnDefs]="pageData.gridData.companyGrid.columnDefs" [rowData]="pageData.gridData.companyGrid.rowData" />
