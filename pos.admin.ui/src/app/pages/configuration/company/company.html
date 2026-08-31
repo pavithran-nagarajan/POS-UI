@@ -1,6 +1,4 @@
 <div class="grid-toolbar">
-  <app-search-box (searchChange)="onSearchChange($event)"/>
+  <app-search-box (searchChange)="onSearchChange($event)" />
 </div>
-<ag-grid-angular style="width: 100%;" [theme]="theme" [domLayout]="'autoHeight'" [columnDefs]="columnDefs"
-  [defaultColDef]="defaultColDef" [pagination]="true" [paginationPageSize]="10"
-  [paginationPageSizeSelector]="[10, 20, 50, 100]" [rowData]="rowData" (gridReady)="onGridReady($event)" />
+<app-data-grid [columnDefs]="columnDefs" [rowData]="rowData" />

@@ -1,45 +1,17 @@
-import { Component } from "@angular/core";
-import { AgGridAngular } from "ag-grid-angular";
-import { environment } from "../../../../environments/environment";
+import { Component, ViewChild } from "@angular/core";
+import { ColDef, GridReadyEvent, ICellRendererParams } from "ag-grid-community";
 import { SearchBox } from "../../../shared/components/search-box/search-box";
-import {
-  ClientSideRowModelModule,
-  ColDef,
-  GridApi,
-  GridReadyEvent,
-  ICellRendererParams,
-  ModuleRegistry,
-  PaginationModule,
-  TextFilterModule,
-  CellStyleModule,
-  enableDevValidations,
-  themeQuartz,
-  QuickFilterModule
-} from "ag-grid-community";
-
-if (environment.production == false) {
-  enableDevValidations();
-}
-
-ModuleRegistry.registerModules([
-  PaginationModule,
-  ClientSideRowModelModule,
-  TextFilterModule,
-  CellStyleModule,
-  QuickFilterModule,
-]);
+import { DataGrid } from "../../../shared/components/data-grid/data-grid";
 
 @Component({
   selector: "app-company",
   standalone: true,
-  imports: [AgGridAngular, SearchBox],
+  imports: [DataGrid, SearchBox],
   templateUrl: "./company.html",
   styleUrl: "./company.scss",
 })
 export class Company {
-  private gridApi!: GridApi;
-
-  theme = themeQuartz;
+  @ViewChild(DataGrid) grid!: DataGrid;
 
   columnDefs: ColDef[] = [
     {
@@ -57,15 +29,12 @@ export class Company {
       width: 120,
       sortable: false,
       filter: false,
+      getQuickFilterText: () => "",
       cellRenderer: (params: ICellRendererParams) => {
         const wrapper = document.createElement("span");
         wrapper.innerHTML = `
-          <button class="action-btn view-btn" title="View">👁️</button>
           <button class="action-btn edit-btn" title="Edit">✏️</button>
         `;
-        wrapper
-          .querySelector(".view-btn")
-          ?.addEventListener("click", () => this.onView(params.data));
         wrapper
           .querySelector(".edit-btn")
           ?.addEventListener("click", () => this.onEdit(params.data));
@@ -73,12 +42,6 @@ export class Company {
       },
     },
   ];
-
-  defaultColDef: ColDef = {
-    flex: 1,
-    minWidth: 100,
-    resizable: true,
-  };
 
   rowData: any[] = [
     { id: 1, companyName: "Acme Corp" },
@@ -103,19 +66,11 @@ export class Company {
     { id: 20, companyName: "Dunder Mifflin" },
   ];
 
-  onGridReady(params: GridReadyEvent) {
-    this.gridApi = params.api;
-  }
-
-  onView(company: any) {
-    console.log("View company:", company);
-  }
-
   onEdit(company: any) {
     console.log("Edit company:", company);
   }
 
   onSearchChange(value: string) {
-    this.gridApi.setGridOption("quickFilterText", value);
+    this.grid.applyQuickFilter(value);
   }
 }
