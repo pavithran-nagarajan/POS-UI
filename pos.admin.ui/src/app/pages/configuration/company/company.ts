@@ -13,6 +13,7 @@ import {
   CellStyleModule,
   enableDevValidations,
   themeQuartz,
+  QuickFilterModule 
 } from "ag-grid-community";
 
 if (environment.production == false) {
@@ -24,6 +25,7 @@ ModuleRegistry.registerModules([
   ClientSideRowModelModule,
   TextFilterModule,
   CellStyleModule,
+  QuickFilterModule,
 ]);
 
 @Component({
@@ -110,5 +112,10 @@ export class Company {
 
   onEdit(company: any) {
     console.log("Edit company:", company);
+  }
+
+  onQuickFilterChanged(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.gridApi.setGridOption("quickFilterText", value);
   }
 }
