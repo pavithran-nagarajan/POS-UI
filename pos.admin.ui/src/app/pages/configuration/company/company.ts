@@ -1,18 +1,8 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { ColDef, ICellRendererParams } from "ag-grid-community";
 import { SearchBox } from "../../../shared/components/search-box/search-box";
 import { DataGrid } from "../../../shared/components/data-grid/data-grid";
-
-interface companyGridState {
-  columnDefs: ColDef[];
-  rowData: any[];
-}
-
-interface pageData {
-  gridData: {
-    companyGrid: companyGridState;
-  };
-}
+import { PageState } from "../company/company..model";
 
 @Component({
   selector: "app-company",
@@ -21,11 +11,12 @@ interface pageData {
   templateUrl: "./company.html",
   styleUrl: "./company.scss",
 })
-export class Company {
+export class Company implements OnInit {
   @ViewChild(DataGrid) grid!: DataGrid;
 
-  pageData: pageData = {
-    gridData: {
+  pageState: PageState = {
+    companyState: {},
+    gridState: {
       companyGrid: { columnDefs: [], rowData: [] },
     },
   };
@@ -36,16 +27,12 @@ export class Company {
   }
 
   private initPage(): void {
-    this.pageData = {
-      gridData: {
-        companyGrid: { columnDefs: [], rowData: [] }
-      }
-    };
+
   }
 
   private bindGrid(): void {
     //define column
-    this.pageData.gridData.companyGrid.columnDefs = [
+    this.pageState.gridState.companyGrid.columnDefs = [
       {
         field: "companyName",
         headerName: "Company Name",
@@ -76,7 +63,7 @@ export class Company {
     ];
 
     //define row
-    this.pageData.gridData.companyGrid.rowData = [
+    this.pageState.gridState.companyGrid.rowData = [
       { id: 1, companyName: "Acme Corp" },
       { id: 2, companyName: "Globex Inc" },
       { id: 3, companyName: "Initech" },
