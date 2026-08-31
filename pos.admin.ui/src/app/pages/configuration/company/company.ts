@@ -9,6 +9,8 @@ import {
   ICellRendererParams,
   ModuleRegistry,
   PaginationModule,
+  TextFilterModule,
+  CellStyleModule,
   enableDevValidations,
   themeQuartz,
 } from "ag-grid-community";
@@ -17,7 +19,12 @@ if (environment.production == false) {
   enableDevValidations();
 }
 
-ModuleRegistry.registerModules([PaginationModule, ClientSideRowModelModule]);
+ModuleRegistry.registerModules([
+  PaginationModule,
+  ClientSideRowModelModule,
+  TextFilterModule,
+  CellStyleModule,
+]);
 
 @Component({
   selector: "app-company",

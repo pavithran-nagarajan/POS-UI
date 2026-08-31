@@ -1,9 +1,11 @@
 :host {
   display: contents;
+  height: 100%;
 }
 
 .app-content-wrapper,
 .app-main {
-   min-height: 100vh;
-   margin: 10px;
+  display: block;
+  min-height: 100vh;
+  margin: 10px;
 }
