@@ -42,7 +42,16 @@ export class DataGrid {
     minWidth: 100,
     resizable: true,
   };
-  @Input() theme: Theme = themeQuartz;
+  @Input() theme: Theme = themeQuartz.withParams({
+    headerBackgroundColor: "#f8f9fa",
+    headerTextColor: "#495057",
+    headerColumnBorder: { color: "#dee2e6" },
+    borderColor: "#dee2e6",
+    accentColor: "#0d6efd",
+    oddRowBackgroundColor: "#ffff",
+    rowHoverColor: "#f1f3f5",
+    headerFontWeight: 600,
+  });
   @Input() domLayout: "autoHeight" | "normal" | undefined = "autoHeight";
   @Input() pagination = true;
   @Input() pageSize = 10;

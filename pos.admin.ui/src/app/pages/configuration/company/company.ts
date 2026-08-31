@@ -45,15 +45,17 @@ export class Company implements OnInit {
       },
       {
         headerName: "Action",
-        width: 120,
+        maxWidth: 150,
         sortable: false,
         filter: false,
         getQuickFilterText: () => "",
         cellRenderer: (params: ICellRendererParams) => {
           const wrapper = document.createElement("span");
           wrapper.innerHTML = `
-          <button class="action-btn edit-btn" title="Edit">✏️</button>
-        `;
+            <button type="button" class="btn btn-sm btn-outline-primary edit-btn" title="Edit">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+          `;
           wrapper
             .querySelector(".edit-btn")
             ?.addEventListener("click", () => this.onEdit(params.data));
