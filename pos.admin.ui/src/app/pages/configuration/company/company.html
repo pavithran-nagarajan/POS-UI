@@ -1,7 +1,5 @@
 <div class="grid-toolbar">
-  <div class="search-box"> <i class="bi bi-search search-icon"></i>
-    <input type="text" placeholder="Search" (input)="onQuickFilterChanged($event)" />
-  </div>
+  <app-search-box (searchChange)="onSearchChange($event)"/>
 </div>
 <ag-grid-angular style="width: 100%;" [theme]="theme" [domLayout]="'autoHeight'" [columnDefs]="columnDefs"
   [defaultColDef]="defaultColDef" [pagination]="true" [paginationPageSize]="10"

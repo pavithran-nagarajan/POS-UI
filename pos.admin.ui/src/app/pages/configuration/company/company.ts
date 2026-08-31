@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { AgGridAngular } from "ag-grid-angular";
 import { environment } from "../../../../environments/environment";
+import { SearchBox } from "../../../shared/components/search-box/search-box";
 import {
   ClientSideRowModelModule,
   ColDef,
@@ -13,7 +14,7 @@ import {
   CellStyleModule,
   enableDevValidations,
   themeQuartz,
-  QuickFilterModule 
+  QuickFilterModule
 } from "ag-grid-community";
 
 if (environment.production == false) {
@@ -31,7 +32,7 @@ ModuleRegistry.registerModules([
 @Component({
   selector: "app-company",
   standalone: true,
-  imports: [AgGridAngular],
+  imports: [AgGridAngular, SearchBox],
   templateUrl: "./company.html",
   styleUrl: "./company.scss",
 })
@@ -114,8 +115,7 @@ export class Company {
     console.log("Edit company:", company);
   }
 
-  onQuickFilterChanged(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
+  onSearchChange(value: string) {
     this.gridApi.setGridOption("quickFilterText", value);
   }
 }

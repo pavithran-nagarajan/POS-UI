@@ -25,43 +25,7 @@
 
 .grid-toolbar {
   display: flex;
-  justify-content: flex-end;   // moves search box to the right
-  margin-top: 12px;            // pushes it down a bit from the element above
+  justify-content: flex-end;
+  margin-top: 12px;
   margin-bottom: 12px;
-}
-
-.search-box {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background-color: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  padding: 8px 12px;
-  width: 260px;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-
-  .search-icon {
-    color: #9ca3af;
-    font-size: 14px;
-    flex-shrink: 0;
-  }
-
-  input {
-    border: none;
-    background: transparent;
-    outline: none;
-    font-size: 14px;
-    color: #374151;
-    width: 100%;
-
-    &::placeholder {
-      color: #9ca3af;
-    }
-  }
-
-  &:focus-within {
-    border-color: #93c5fd;
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
-  }
 }
