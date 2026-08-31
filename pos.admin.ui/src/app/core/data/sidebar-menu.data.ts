@@ -2,7 +2,7 @@ import { MenuItem } from '../models/menu-item.model';
 
 export const SIDEBAR_MENU: MenuItem[] = [
     {
-        label: 'Dashboard', icon: 'bi-speedometer', active: true, open: true
+        label: 'Dashboard', link: '/dashboard', icon: 'bi-speedometer', active: true, open: true
     },
     {
         label: 'Configuration', icon: 'bi-gear',

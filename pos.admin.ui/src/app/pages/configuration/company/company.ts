@@ -1,5 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
-import { ColDef, GridReadyEvent, ICellRendererParams } from "ag-grid-community";
+import { ColDef, ICellRendererParams } from "ag-grid-community";
 import { SearchBox } from "../../../shared/components/search-box/search-box";
 import { DataGrid } from "../../../shared/components/data-grid/data-grid";
 

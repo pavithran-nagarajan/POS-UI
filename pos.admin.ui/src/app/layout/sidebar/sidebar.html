@@ -25,8 +25,8 @@
         <ng-container *ngFor="let item of items">
           <li *ngIf="item.header" class="nav-header">{{ item.label }}</li>
 
-          <li *ngIf="!item.header" class="nav-item" [class.menu-open]="item.open">
-            <a [href]="item.link || '#'" class="nav-link" [class.active]="item.active">
+          <li *ngIf="!item.header" class="nav-item" routerLinkActive="menu-open" [routerLinkActiveOptions]="{ exact: false }">
+            <a [routerLink]="item.link" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
               <i class="nav-icon bi" [ngClass]="item.icon"></i>
               <p>
                 {{ item.label }}

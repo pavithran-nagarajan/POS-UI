@@ -4,10 +4,11 @@ import { OverlayScrollbars } from 'overlayscrollbars';
 import { SidebarStateService } from '../../core/services/sidebar-state.service';
 import { MenuItem } from '../../core/models/menu-item.model';
 import { SIDEBAR_MENU } from '../../core/data/sidebar-menu.data';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
 })
@@ -19,7 +20,7 @@ export class Sidebar implements AfterViewInit, OnDestroy {
   constructor(
     private sidebarState: SidebarStateService,
     private elRef: ElementRef
-  ) {}
+  ) { }
 
   closeSidebar(): void {
     this.sidebarState.close();

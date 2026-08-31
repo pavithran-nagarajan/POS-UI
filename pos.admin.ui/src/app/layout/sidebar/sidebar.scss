@@ -11,6 +11,12 @@
   width: 250px;
 }
 
+.app-sidebar {
+  .nav-link {
+    cursor: pointer;
+  }
+}
+
 .sidebar-brand {
   position: relative;
 }
