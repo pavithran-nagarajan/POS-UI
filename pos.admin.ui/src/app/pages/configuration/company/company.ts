@@ -39,9 +39,6 @@ export class Company implements OnInit {
         minWidth: 200,
         sortable: true,
         filter: true,
-        cellClassRules: {
-          "sorted-col-cell": (params) => params.column.getSort() != null,
-        },
       },
       {
         headerName: "Action",
