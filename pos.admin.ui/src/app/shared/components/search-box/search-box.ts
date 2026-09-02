@@ -15,20 +15,20 @@ export class SearchBox implements OnInit {
   @Output() searchChange = new EventEmitter<string>();
 
   searchText = "";
-  private searchSubject = new Subject<string>();
+  private searchTextSubject = new Subject<string>();
 
   ngOnInit() {
-    this.searchSubject
+    this.searchTextSubject
       .pipe(debounceTime(this.debounceMs), distinctUntilChanged())
       .subscribe((value) => this.searchChange.emit(value));
   }
 
   onInput() {
-    this.searchSubject.next(this.searchText);
+    this.searchTextSubject.next(this.searchText);
   }
 
   clear() {
     this.searchText = "";
-    this.searchSubject.next("");
+    this.searchTextSubject.next("");
   }
 }
