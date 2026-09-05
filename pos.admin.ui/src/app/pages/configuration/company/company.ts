@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { ColDef, ICellRendererParams } from "ag-grid-community";
-import { SearchBox } from "../../../shared/components/search-box/search-box";
+import { GridToolbar } from "../../../shared/components/grid-toolbar/grid-toolbar";
 import { DataGrid } from "../../../shared/components/data-grid/data-grid";
 import { PageState } from "../company/company..model";
 
 @Component({
   selector: "app-company",
   standalone: true,
-  imports: [DataGrid, SearchBox],
+  imports: [DataGrid, GridToolbar],
   templateUrl: "./company.html",
   styleUrl: "./company.scss",
 })
@@ -92,5 +92,9 @@ export class Company implements OnInit {
 
   onSearchChange(value: string) {
     this.grid.applyQuickFilter(value);
+  }
+
+  onAddCompany() {
+    alert("Add");
   }
 }

@@ -1,5 +1,9 @@
-<div class="grid-toolbar">
-  <app-search-box (searchChange)="onSearchChange($event)" />
-</div>
+<app-grid-toolbar
+  actionButtonName="Add Company"
+  actionButtonIcon="bi-plus-lg"
+  searchPlaceholder="Search companies..."
+  (actionClick)="onAddCompany()"
+  (searchChange)="onSearchChange($event)">
+</app-grid-toolbar>
 <app-data-grid [columnDefs]="pageState.gridState.companyGrid.columnDefs"
   [rowData]="pageState.gridState.companyGrid.rowData" />
