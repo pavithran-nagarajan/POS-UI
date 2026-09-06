@@ -1,4 +1,10 @@
-import { Component, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  AfterViewInit,
+  OnDestroy,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OverlayScrollbars } from 'overlayscrollbars';
 import { SidebarStateService } from '../../core/services/sidebar-state.service';
@@ -10,6 +16,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   selector: 'app-sidebar',
   imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './sidebar.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './sidebar.scss',
 })
 export class Sidebar implements AfterViewInit, OnDestroy {
@@ -19,8 +26,8 @@ export class Sidebar implements AfterViewInit, OnDestroy {
 
   constructor(
     private sidebarState: SidebarStateService,
-    private elRef: ElementRef
-  ) { }
+    private elRef: ElementRef,
+  ) {}
 
   closeSidebar(): void {
     this.sidebarState.close();

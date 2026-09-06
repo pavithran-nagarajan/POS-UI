@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -12,9 +12,18 @@ import { RouterLink } from '@angular/router';
       <a routerLink="/">Go back home</a>
     </div>
   `,
-  styles: [`
-    .not-found { text-align: center; padding: 4rem 1rem; }
-    h1 { font-size: 4rem; margin: 0; }
-  `]
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styles: [
+    `
+      .not-found {
+        text-align: center;
+        padding: 4rem 1rem;
+      }
+      h1 {
+        font-size: 4rem;
+        margin: 0;
+      }
+    `,
+  ],
 })
 export class NotFoundComponent {}

@@ -1,6 +1,6 @@
-import { Component } from "@angular/core";
-import { ICellRendererAngularComp } from "ag-grid-angular";
-import { ICellRendererParams } from "ag-grid-community";
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ICellRendererAngularComp } from 'ag-grid-angular';
+import { ICellRendererParams } from 'ag-grid-community';
 
 export interface EditActionCellRendererParams extends ICellRendererParams {
   onEdit: (data: any) => void;
@@ -8,8 +8,9 @@ export interface EditActionCellRendererParams extends ICellRendererParams {
 }
 
 @Component({
-  selector: "app-edit-action-renderer",
+  selector: 'app-edit-action-renderer',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
       type="button"

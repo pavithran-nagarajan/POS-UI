@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -9,7 +9,8 @@ import { AuthService } from '../../core/services/auth.service';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.html',
-  styleUrl: './login.scss'
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './login.scss',
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);
@@ -21,7 +22,7 @@ export class LoginComponent {
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
   onSubmit(): void {
@@ -39,7 +40,7 @@ export class LoginComponent {
       error: (err) => {
         this.errorMessage = err?.error?.message || 'Invalid credentials';
         this.loading = false;
-      }
+      },
     });
   }
 }

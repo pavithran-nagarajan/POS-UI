@@ -1,20 +1,28 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { Subject, debounceTime, distinctUntilChanged } from "rxjs";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
-  selector: "app-search-box",
+  selector: 'app-search-box',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: "./search-box.html",
-  styleUrl: "./search-box.scss",
+  templateUrl: './search-box.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './search-box.scss',
 })
 export class SearchBox implements OnInit {
-  @Input() placeholder = "Search";
+  @Input() placeholder = 'Search';
   @Input() debounceMs = 0;
   @Output() searchChange = new EventEmitter<string>();
 
-  searchText = "";
+  searchText = '';
   private searchTextSubject = new Subject<string>();
 
   ngOnInit() {
@@ -28,7 +36,7 @@ export class SearchBox implements OnInit {
   }
 
   clear() {
-    this.searchText = "";
-    this.searchTextSubject.next("");
+    this.searchText = '';
+    this.searchTextSubject.next('');
   }
 }

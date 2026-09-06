@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { AgGridAngular } from "ag-grid-angular";
-import { environment } from "../../../../environments/environment";
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
+import { AgGridAngular } from 'ag-grid-angular';
+import { environment } from '../../../../environments/environment';
 import {
   ClientSideRowModelModule,
   ColDef,
@@ -14,7 +14,7 @@ import {
   enableDevValidations,
   themeQuartz,
   Theme,
-} from "ag-grid-community";
+} from 'ag-grid-community';
 
 if (environment.production == false) {
   enableDevValidations();
@@ -29,10 +29,11 @@ ModuleRegistry.registerModules([
 ]);
 
 @Component({
-  selector: "app-data-grid",
+  selector: 'app-data-grid',
   standalone: true,
   imports: [AgGridAngular],
-  templateUrl: "./data-grid.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  templateUrl: './data-grid.html',
 })
 export class DataGrid {
   @Input({ required: true }) columnDefs!: ColDef[];
@@ -43,20 +44,20 @@ export class DataGrid {
     resizable: true,
   };
   @Input() theme: Theme = themeQuartz.withParams({
-    headerBackgroundColor: "#f8f9fa",
-    headerTextColor: "#495057",
-    headerColumnBorder: { color: "#dee2e6" },
-    borderColor: "#dee2e6",
-    accentColor: "#0d6efd",
-    oddRowBackgroundColor: "#ffff",
-    rowHoverColor: "#f1f3f5",
+    headerBackgroundColor: '#f8f9fa',
+    headerTextColor: '#495057',
+    headerColumnBorder: { color: '#dee2e6' },
+    borderColor: '#dee2e6',
+    accentColor: '#0d6efd',
+    oddRowBackgroundColor: '#ffff',
+    rowHoverColor: '#f1f3f5',
     headerFontWeight: 600,
   });
-  @Input() domLayout: "autoHeight" | "normal" | undefined = "autoHeight";
+  @Input() domLayout: 'autoHeight' | 'normal' | undefined = 'autoHeight';
   @Input() pagination = true;
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [10, 20, 50, 100];
-  @Input() width = "100%";
+  @Input() width = '100%';
 
   @Output() gridReady = new EventEmitter<GridReadyEvent>();
 
@@ -68,6 +69,6 @@ export class DataGrid {
   }
 
   applyQuickFilter(value: string) {
-    this.gridApi.setGridOption("quickFilterText", value);
+    this.gridApi.setGridOption('quickFilterText', value);
   }
 }
