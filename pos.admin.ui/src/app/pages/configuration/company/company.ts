@@ -49,7 +49,8 @@ export class Company implements OnInit {
         getQuickFilterText: () => "",
         cellRenderer: EditActionRenderer,
         cellRendererParams: {
-          onEdit: (data: any) => this.onEdit(data),
+          onEdit: (data: any) => this.onEditCompany(data),
+          title: "Edit Company",
         } as EditActionCellRendererParams,
       },
     ];
@@ -79,7 +80,7 @@ export class Company implements OnInit {
     ];
   }
 
-  onEdit(company: any) {
+  onEditCompany(company: any) {
     console.log("Edit company:", company);
   }
 
