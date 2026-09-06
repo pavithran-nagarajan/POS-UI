@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { ColDef, ICellRendererParams } from "ag-grid-community";
 import { GridToolbar } from "../../../shared/components/grid-toolbar/grid-toolbar";
 import { DataGrid } from "../../../shared/components/data-grid/data-grid";
+import { EditActionRenderer, EditActionCellRendererParams } from "../../../shared/components/grid-action-buttons/edit-action-renderer/edit-action-renderer";
 import { PageState } from "../company/company..model";
 
 @Component({
@@ -46,18 +47,10 @@ export class Company implements OnInit {
         sortable: false,
         filter: false,
         getQuickFilterText: () => "",
-        cellRenderer: (params: ICellRendererParams) => {
-          const wrapper = document.createElement("span");
-          wrapper.innerHTML = `
-            <button type="button" class="btn btn-sm btn-outline-primary edit-btn" title="Edit">
-              <i class="bi bi-pencil-square"></i>
-            </button>
-          `;
-          wrapper
-            .querySelector(".edit-btn")
-            ?.addEventListener("click", () => this.onEdit(params.data));
-          return wrapper;
-        },
+        cellRenderer: EditActionRenderer,
+        cellRendererParams: {
+          onEdit: (data: any) => this.onEdit(data),
+        } as EditActionCellRendererParams,
       },
     ];
 
