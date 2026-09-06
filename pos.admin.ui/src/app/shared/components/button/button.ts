@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -6,7 +6,8 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './button.html',
-  styleUrls: ['./button.scss']
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrls: ['./button.scss'],
 })
 export class Button {
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
@@ -15,7 +16,6 @@ export class Button {
   @Input() variant: string = 'primary';
   @Input() icon?: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
-
 
   @Output() onClick: EventEmitter<Event> = new EventEmitter<Event>();
 

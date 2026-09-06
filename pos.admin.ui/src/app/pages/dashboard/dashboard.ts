@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
@@ -14,7 +14,8 @@ interface SummaryCard {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.scss'
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './dashboard.scss',
 })
 export class DashboardComponent implements OnInit {
   private auth = inject(AuthService);
@@ -34,7 +35,7 @@ export class DashboardComponent implements OnInit {
         { label: 'Active Users', value: 1284, icon: '👥' },
         { label: 'Revenue', value: '$24,500', icon: '💰' },
         { label: 'Open Tickets', value: 12, icon: '🎫' },
-        { label: 'Uptime', value: '99.9%', icon: '⚡' }
+        { label: 'Uptime', value: '99.9%', icon: '⚡' },
       ];
       this.loading = false;
     }, 500);
