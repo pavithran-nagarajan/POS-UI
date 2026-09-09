@@ -22,23 +22,31 @@
       </ul>
 
       <ng-template #menuList let-items>
-        <ng-container *ngFor="let item of items">
-          <li *ngIf="item.header" class="nav-header">{{ item.label }}</li>
-
-          <li *ngIf="!item.header" class="nav-item" routerLinkActive="menu-open" [routerLinkActiveOptions]="{ exact: false }">
-            <a [routerLink]="item.link" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
-              <i class="nav-icon bi" [ngClass]="item.icon"></i>
-              <p>
-                {{ item.label }}
-                <span *ngIf="item.badge" class="nav-badge badge text-bg-secondary me-3">{{ item.badge }}</span>
-                <i *ngIf="item.children?.length" class="nav-arrow bi bi-chevron-right"></i>
-              </p>
-            </a>
-            <ul *ngIf="item.children?.length" class="nav nav-treeview">
-              <ng-container *ngTemplateOutlet="menuList; context: { $implicit: item.children }"></ng-container>
-            </ul>
-          </li>
-        </ng-container>
+        @for (item of items; track item.label) {
+          @if (item.header) {
+            <li class="nav-header">{{ item.label }}</li>
+          } @else {
+            <li class="nav-item" routerLinkActive="menu-open" [routerLinkActiveOptions]="{ exact: false }">
+              <a [routerLink]="item.link" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
+                <i class="nav-icon bi" [ngClass]="item.icon"></i>
+                <p>
+                  {{ item.label }}
+                  @if (item.badge) {
+                    <span class="nav-badge badge text-bg-secondary me-3">{{ item.badge }}</span>
+                  }
+                  @if (item.children?.length) {
+                    <i class="nav-arrow bi bi-chevron-right"></i>
+                  }
+                </p>
+              </a>
+              @if (item.children?.length) {
+                <ul class="nav nav-treeview">
+                  <ng-container *ngTemplateOutlet="menuList; context: { $implicit: item.children }"></ng-container>
+                </ul>
+              }
+            </li>
+          }
+        }
       </ng-template>
     </nav>
   </div>

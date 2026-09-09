@@ -1,12 +1,13 @@
 <div class="grid-toolbar">
-  <app-button
-    *ngIf="showActionButton"
-    [variant]="actionButtonVariant"
-    [name]="actionButtonName"
-    [icon]="actionButtonIcon"
-    [disabled]="actionButtonDisabled"
-    (onClick)="onActionClick($event)">
-  </app-button>
+  @if (showActionButton) {
+    <app-button
+      [variant]="actionButtonVariant"
+      [name]="actionButtonName"
+      [icon]="actionButtonIcon"
+      [disabled]="actionButtonDisabled"
+      (onClick)="onActionClick($event)">
+    </app-button>
+  }
 
   <app-search-box
     [placeholder]="searchPlaceholder"

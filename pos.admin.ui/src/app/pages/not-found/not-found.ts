@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
       <a routerLink="/">Go back home</a>
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       .not-found {

@@ -4,17 +4,19 @@
 
     <label for="email">Email</label>
     <input id="email" type="email" formControlName="email" />
-    <small *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
-      Enter a valid email
-    </small>
+    @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
+      <small>Enter a valid email</small>
+    }
 
     <label for="password">Password</label>
     <input id="password" type="password" formControlName="password" />
-    <small *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
-      Password must be at least 6 characters
-    </small>
+    @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+      <small>Password must be at least 6 characters</small>
+    }
 
-    <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+    @if (errorMessage) {
+      <div class="error">{{ errorMessage }}</div>
+    }
 
     <button type="submit" [disabled]="loading">
       {{ loading ? 'Signing in...' : 'Sign In' }}

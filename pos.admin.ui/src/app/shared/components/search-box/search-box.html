@@ -7,6 +7,7 @@
     (ngModelChange)="onInput()"
   />
   @if (searchText) {
+    <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events, @angular-eslint/template/interactive-supports-focus -->
     <i class="bi bi-x-circle-fill clear-icon" (click)="clear()"></i>
   }
 </div>

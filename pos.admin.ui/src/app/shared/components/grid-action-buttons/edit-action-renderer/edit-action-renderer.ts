@@ -13,7 +13,7 @@ export interface EditActionCellRendererParams extends ICellRendererParams {
   selector: 'app-edit-action-renderer',
   standalone: true,
   imports: [NgbTooltip],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <button
       type="button"

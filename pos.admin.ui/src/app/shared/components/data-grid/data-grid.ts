@@ -32,7 +32,7 @@ ModuleRegistry.registerModules([
   selector: 'app-data-grid',
   standalone: true,
   imports: [AgGridAngular],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './data-grid.html',
 })
 export class DataGrid {

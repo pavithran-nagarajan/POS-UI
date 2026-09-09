@@ -1,19 +1,18 @@
 import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
-import { ColDef, ICellRendererParams } from 'ag-grid-community';
 import { GridToolbar } from '../../../shared/components/grid-toolbar/grid-toolbar';
 import { DataGrid } from '../../../shared/components/data-grid/data-grid';
 import {
   EditActionRenderer,
   EditActionCellRendererParams,
 } from '../../../shared/components/grid-action-buttons/edit-action-renderer/edit-action-renderer';
-import { PageState } from '../company/company..model';
+import { PageState } from './company.model';
 
 @Component({
   selector: 'app-company',
   standalone: true,
   imports: [DataGrid, GridToolbar],
   templateUrl: './company.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './company.scss',
 })
 export class Company implements OnInit {

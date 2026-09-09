@@ -14,7 +14,7 @@ import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './search-box.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './search-box.scss',
 })
 export class SearchBox implements OnInit {

@@ -8,7 +8,7 @@ import { Button } from '../button/button';
   standalone: true,
   imports: [CommonModule, SearchBox, Button],
   templateUrl: './grid-toolbar.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './grid-toolbar.scss',
 })
 export class GridToolbar {

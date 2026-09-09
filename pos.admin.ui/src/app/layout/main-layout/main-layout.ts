@@ -8,7 +8,7 @@ import { Sidebar } from '../sidebar/sidebar';
   selector: 'app-main-layout',
   imports: [RouterOutlet, Header, Footer, Sidebar],
   templateUrl: './main-layout.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './main-layout.scss',
 })
 export class MainLayout {}

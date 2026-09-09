@@ -14,7 +14,7 @@ interface SummaryCard {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './dashboard.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './dashboard.scss',
 })
 export class DashboardComponent implements OnInit {
