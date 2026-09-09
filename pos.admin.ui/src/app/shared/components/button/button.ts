@@ -11,17 +11,17 @@ import { CommonModule } from '@angular/common';
 })
 export class Button {
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
-  @Input() name: string = '';
-  @Input() disabled: boolean = false;
-  @Input() variant: string = 'primary';
+  @Input() name = '';
+  @Input() disabled = false;
+  @Input() variant = 'primary';
   @Input() icon?: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
 
-  @Output() onClick: EventEmitter<Event> = new EventEmitter<Event>();
+  @Output() buttonClick = new EventEmitter<Event>();
 
   handleClick(event: Event): void {
     if (!this.disabled) {
-      this.onClick.emit(event);
+      this.buttonClick.emit(event);
     }
   }
 }

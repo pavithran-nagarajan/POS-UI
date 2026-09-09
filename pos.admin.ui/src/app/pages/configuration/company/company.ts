@@ -25,11 +25,8 @@ export class Company implements OnInit {
   };
 
   ngOnInit(): void {
-    this.initPage();
     this.bindGrid();
   }
-
-  private initPage(): void { }
 
   private bindGrid(): void {
     //define column

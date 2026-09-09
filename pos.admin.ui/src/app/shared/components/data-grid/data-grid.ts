@@ -35,7 +35,7 @@ ModuleRegistry.registerModules([
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './data-grid.html',
 })
-export class DataGrid<TData = unknown> {
+export class DataGrid<TData> {
   @Input({ required: true }) columnDefs!: ColDef<TData>[];
   @Input({ required: true }) rowData!: TData[];
   @Input() defaultColDef: ColDef<TData> = {

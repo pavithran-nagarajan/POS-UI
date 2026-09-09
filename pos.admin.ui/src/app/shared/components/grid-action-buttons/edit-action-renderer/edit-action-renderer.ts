@@ -3,8 +3,8 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
 import { NgbTooltip, PlacementArray } from '@ng-bootstrap/ng-bootstrap';
 
-export interface EditActionCellRendererParams extends ICellRendererParams {
-  onEdit: (data: any) => void;
+export interface EditActionCellRendererParams<TData = unknown> extends ICellRendererParams {
+  onEdit: (data: TData) => void;
   title?: string; // optional override for tooltip
   placement?: PlacementArray; // optional override for tooltip placement
 }
@@ -27,18 +27,18 @@ export interface EditActionCellRendererParams extends ICellRendererParams {
     </button>
   `,
 })
-export class EditActionRenderer implements ICellRendererAngularComp {
-  params!: EditActionCellRendererParams;
+export class EditActionRenderer<TData = unknown> implements ICellRendererAngularComp {
+  params!: EditActionCellRendererParams<TData>;
   tooltipText: string | undefined;
   placement: PlacementArray = 'top';
 
-  agInit(params: EditActionCellRendererParams): void {
+  agInit(params: EditActionCellRendererParams<TData>): void {
     this.params = params;
     this.tooltipText = params.title;
     this.placement = params.placement ?? 'top';
   }
 
-  refresh(params: EditActionCellRendererParams): boolean {
+  refresh(params: EditActionCellRendererParams<TData>): boolean {
     this.params = params;
     this.tooltipText = params.title;
     this.placement = params.placement ?? 'top';
@@ -46,6 +46,6 @@ export class EditActionRenderer implements ICellRendererAngularComp {
   }
 
   onClick(): void {
-    this.params.onEdit(this.params.data);
+    this.params.onEdit(this.params.data as TData);
   }
 }
