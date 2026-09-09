@@ -1,10 +1,10 @@
 <div class="grid-toolbar">
-  @if (showActionButton) {
+  @if (canShowActionButton) {
     <app-button
       [variant]="actionButtonVariant"
       [name]="actionButtonName"
       [icon]="actionButtonIcon"
-      [disabled]="actionButtonDisabled"
+      [isDisabled]="isActionButtonDisabled"
       (buttonClick)="onActionClick($event)">
     </app-button>
   }

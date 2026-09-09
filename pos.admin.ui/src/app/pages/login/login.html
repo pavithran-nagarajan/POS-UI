@@ -18,8 +18,8 @@
       <div class="error">{{ errorMessage }}</div>
     }
 
-    <button type="submit" [disabled]="loading">
-      {{ loading ? 'Signing in...' : 'Sign In' }}
+    <button type="submit" [disabled]="isLoading">
+      {{ isLoading ? 'Signing in...' : 'Sign In' }}
     </button>
   </form>
 </div>

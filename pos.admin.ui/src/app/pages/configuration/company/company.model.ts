@@ -16,4 +16,3 @@ export interface CompanyState {
   companyName: string;
   isActive: boolean;
 }
-

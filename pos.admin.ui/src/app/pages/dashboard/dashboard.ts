@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   private auth = inject(AuthService);
   private router = inject(Router);
 
-  loading = true;
+  isLoading = true;
   cards: SummaryCard[] = [];
 
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
         { label: 'Open Tickets', value: 12, icon: '🎫' },
         { label: 'Uptime', value: '99.9%', icon: '⚡' },
       ];
-      this.loading = false;
+      this.isLoading = false;
     }, 500);
   }
 

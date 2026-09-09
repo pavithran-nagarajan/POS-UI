@@ -54,7 +54,7 @@ export class DataGrid<TData> {
     headerFontWeight: 600,
   });
   @Input() domLayout: 'autoHeight' | 'normal' | undefined = 'autoHeight';
-  @Input() pagination = true;
+  @Input() isPagination = true;
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [10, 20, 50, 100];
   @Input() width = '100%';

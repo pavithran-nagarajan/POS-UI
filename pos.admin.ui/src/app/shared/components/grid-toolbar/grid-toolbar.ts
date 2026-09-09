@@ -15,11 +15,11 @@ export class GridToolbar {
   @Input() searchPlaceholder = 'Search';
   @Input() debounceMs = 0;
 
-  @Input() showActionButton = true;
+  @Input() canShowActionButton = true;
   @Input() actionButtonName = 'Add';
   @Input() actionButtonIcon?: string;
   @Input() actionButtonVariant = 'primary';
-  @Input() actionButtonDisabled = false;
+  @Input() isActionButtonDisabled = false;
 
   @Output() searchChange = new EventEmitter<string>();
   @Output() actionClick = new EventEmitter<Event>();

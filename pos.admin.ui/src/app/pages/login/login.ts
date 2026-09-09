@@ -17,7 +17,7 @@ export class LoginComponent {
   private auth = inject(AuthService);
   private router = inject(Router);
 
-  loading = false;
+  isLoading = false;
   errorMessage = '';
 
   loginForm = this.fb.group({
@@ -31,7 +31,7 @@ export class LoginComponent {
       return;
     }
 
-    this.loading = true;
+    this.isLoading = true;
     this.errorMessage = '';
     const { email, password } = this.loginForm.getRawValue();
 
@@ -39,7 +39,7 @@ export class LoginComponent {
       next: () => this.router.navigate(['/dashboard']),
       error: (err) => {
         this.errorMessage = err?.error?.message || 'Invalid credentials';
-        this.loading = false;
+        this.isLoading = false;
       },
     });
   }

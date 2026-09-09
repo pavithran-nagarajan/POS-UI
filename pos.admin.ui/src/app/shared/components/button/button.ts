@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 export class Button {
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Input() name = '';
-  @Input() disabled = false;
+  @Input() isDisabled = false;
   @Input() variant = 'primary';
   @Input() icon?: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
@@ -20,7 +20,7 @@ export class Button {
   @Output() buttonClick = new EventEmitter<Event>();
 
   handleClick(event: Event): void {
-    if (!this.disabled) {
+    if (!this.isDisabled) {
       this.buttonClick.emit(event);
     }
   }
