@@ -1,17 +1,28 @@
+// eslint.config.mjs
 // @ts-check
-const eslint = require('@eslint/js');
-const { defineConfig } = require('eslint/config');
-const tseslint = require('typescript-eslint');
-const angular = require('angular-eslint');
+import { fileURLToPath } from 'node:url';
+import eslint from '@eslint/js';
+import { defineConfig } from 'eslint/config';
+import tseslint from 'typescript-eslint';
+import angular from 'angular-eslint';
+import unicorn from 'eslint-plugin-unicorn';
+import checkFile from 'eslint-plugin-check-file';
 
-module.exports = defineConfig([
+// __dirname doesn't exist in ESM — reconstruct it
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+
+export default defineConfig([
   {
     rules: {
-      'no-console': 'error'
+      'no-console': 'error',
     },
   },
   {
     files: ['**/*.ts'],
+    plugins: {
+      unicorn,
+      'check-file': checkFile,
+    },
     extends: [
       eslint.configs.recommended,
       tseslint.configs.recommended,
@@ -26,6 +37,21 @@ module.exports = defineConfig([
     },
     processor: angular.processInlineTemplates,
     rules: {
+      // --- File naming ---
+      'unicorn/filename-case': [
+        'error',
+        {
+          case: 'kebabCase',
+        },
+      ],
+      'check-file/filename-blocklist': [
+        'error',
+        {
+          '**/*.component.ts': '*.ts',
+          '**/*.service.ts': '*.ts',
+        },
+      ],
+      // --- Angular selectors ---
       '@angular-eslint/directive-selector': [
         'error',
         {
@@ -42,6 +68,7 @@ module.exports = defineConfig([
           style: 'kebab-case',
         },
       ],
+      // --- Naming conventions ---
       '@typescript-eslint/naming-convention': [
         'error',
         // Default fallback for anything not explicitly matched
@@ -106,7 +133,7 @@ module.exports = defineConfig([
           format: ['PascalCase'],
           prefix: ['is', 'has', 'can', 'should', 'will', 'did'],
         },
-      ]
+      ],
     },
   },
   {
