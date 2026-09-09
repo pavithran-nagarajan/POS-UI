@@ -35,10 +35,10 @@ ModuleRegistry.registerModules([
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './data-grid.html',
 })
-export class DataGrid {
-  @Input({ required: true }) columnDefs!: ColDef[];
-  @Input({ required: true }) rowData!: any[];
-  @Input() defaultColDef: ColDef = {
+export class DataGrid<TData = unknown> {
+  @Input({ required: true }) columnDefs!: ColDef<TData>[];
+  @Input({ required: true }) rowData!: TData[];
+  @Input() defaultColDef: ColDef<TData> = {
     flex: 1,
     minWidth: 100,
     resizable: true,
@@ -59,11 +59,11 @@ export class DataGrid {
   @Input() pageSizeOptions = [10, 20, 50, 100];
   @Input() width = '100%';
 
-  @Output() gridReady = new EventEmitter<GridReadyEvent>();
+  @Output() gridReady = new EventEmitter<GridReadyEvent<TData>>();
 
-  private gridApi!: GridApi;
+  private gridApi!: GridApi<TData>;
 
-  onGridReady(params: GridReadyEvent) {
+  onGridReady(params: GridReadyEvent<TData>) {
     this.gridApi = params.api;
     this.gridReady.emit(params);
   }
