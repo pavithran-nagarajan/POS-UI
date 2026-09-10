@@ -1,7 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 import { AuthService } from '../../core/services/auth';
 
 @Component({

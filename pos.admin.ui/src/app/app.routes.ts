@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+
 import { AuthLayout } from './layout/auth-layout/auth-layout';
 import { MainLayout } from './layout/main-layout/main-layout';
 

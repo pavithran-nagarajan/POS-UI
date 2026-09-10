@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
-import { environment } from '../../../../environments/environment';
 import {
   ClientSideRowModelModule,
   ColDef,
@@ -15,6 +14,8 @@ import {
   themeQuartz,
   Theme,
 } from 'ag-grid-community';
+
+import { environment } from '../../../../environments/environment';
 
 if (environment.production == false) {
   enableDevValidations();

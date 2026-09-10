@@ -1,10 +1,11 @@
-import { Component, ElementRef, AfterViewInit, OnDestroy, inject, ChangeDetectionStrategy, } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OverlayScrollbars } from 'overlayscrollbars';
-import { SidebarStateService } from '../../core/services/sidebar-state';
-import { MenuItem } from './sidebar.model';
-import { SIDEBAR_MENU } from './sidebar.data';
+import { Component, ElementRef, AfterViewInit, OnDestroy, inject, ChangeDetectionStrategy, } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { OverlayScrollbars } from 'overlayscrollbars';
+
+import { SidebarStateService } from '../../core/services/sidebar-state';
+import { SIDEBAR_MENU } from './sidebar.data';
+import { MenuItem } from './sidebar.model';
 
 @Component({
   selector: 'app-sidebar',

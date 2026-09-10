@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
-import { GridToolbar } from '../../../shared/components/grid-toolbar/grid-toolbar';
+
 import { DataGrid } from '../../../shared/components/data-grid/data-grid';
 import {
   EditActionRenderer,
   EditActionCellRendererParams,
 } from '../../../shared/components/grid-action-buttons/edit-action-renderer/edit-action-renderer';
+import { GridToolbar } from '../../../shared/components/grid-toolbar/grid-toolbar';
 import { CompanyState, PageState } from './company.model';
 
 @Component({

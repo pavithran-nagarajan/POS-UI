@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-button',

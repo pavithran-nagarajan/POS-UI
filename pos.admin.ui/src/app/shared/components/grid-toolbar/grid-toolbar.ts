@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SearchBox } from '../search-box/search-box';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
+
 import { Button } from '../button/button';
+import { SearchBox } from '../search-box/search-box';
 
 @Component({
   selector: 'app-grid-toolbar',

@@ -1,6 +1,7 @@
-import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { AuthService } from '../../core/services/auth';
 
 interface SummaryCard {

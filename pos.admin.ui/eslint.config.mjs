@@ -8,6 +8,7 @@ import angular from 'angular-eslint';
 import unicorn from 'eslint-plugin-unicorn';
 import checkFile from 'eslint-plugin-check-file';
 import boundaries from 'eslint-plugin-boundaries';
+import perfectionist from 'eslint-plugin-perfectionist';
 
 // __dirname doesn't exist in ESM — reconstruct it
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
@@ -24,6 +25,7 @@ export default defineConfig([
       unicorn,
       'check-file': checkFile,
       boundaries,
+      perfectionist,
     },
     extends: [
       eslint.configs.recommended,
@@ -96,6 +98,14 @@ export default defineConfig([
               ],
             },
           ],
+        },
+      ],
+      // Sorting various data, such as objects, imports, TypeScript types, enums, JSX props, Svelte attributes, etc. alphabetically, naturally, or by line length.
+      'perfectionist/sort-imports': [
+        'error',
+        {
+          type: 'natural',
+          order: 'asc',
         },
       ],
       // --- Angular selectors ---
