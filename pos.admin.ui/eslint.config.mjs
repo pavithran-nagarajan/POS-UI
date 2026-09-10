@@ -7,6 +7,7 @@ import tseslint from 'typescript-eslint';
 import angular from 'angular-eslint';
 import unicorn from 'eslint-plugin-unicorn';
 import checkFile from 'eslint-plugin-check-file';
+import boundaries from 'eslint-plugin-boundaries';
 
 // __dirname doesn't exist in ESM — reconstruct it
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
@@ -22,6 +23,7 @@ export default defineConfig([
     plugins: {
       unicorn,
       'check-file': checkFile,
+      boundaries,
     },
     extends: [
       eslint.configs.recommended,
@@ -36,6 +38,19 @@ export default defineConfig([
       },
     },
     processor: angular.processInlineTemplates,
+    settings: {
+      'boundaries/elements': [
+        { type: 'shared', pattern: 'src/app/shared/**' },
+        { type: 'core', pattern: 'src/app/core/**' },
+        { type: 'layout', pattern: 'src/app/layout/**' },
+        { type: 'features', pattern: 'src/app/features/**' },
+      ],
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+        },
+      },
+    },
     rules: {
       // --- File naming ---
       'unicorn/filename-case': [
@@ -49,6 +64,38 @@ export default defineConfig([
         {
           '**/*.component.ts': '*.ts',
           '**/*.service.ts': '*.ts',
+        },
+      ],
+      // Set dependency boundaries for clean architecture
+      'boundaries/dependencies': [
+        'error',
+        {
+          default: 'disallow',
+          policies: [
+            {
+              from: { element: { type: 'shared' } },
+              allow: [],
+            },
+            {
+              from: { element: { type: 'core' } },
+              allow: [],
+            },
+            {
+              from: { element: { type: 'layout' } },
+              allow: [
+                { to: { element: { type: 'shared' } } },
+                { to: { element: { type: 'core' } } },
+              ],
+            },
+            {
+              from: { element: { type: 'features' } },
+              allow: [
+                { to: { element: { type: 'shared' } } },
+                { to: { element: { type: 'core' } } },
+                { to: { element: { type: 'layout' } } },
+              ],
+            },
+          ],
         },
       ],
       // --- Angular selectors ---
