@@ -54,7 +54,12 @@ export default defineConfig([
       },
     },
     rules: {
-      // --- File naming ---
+      // Complexity/maintainability limits
+      complexity: ['error', 10],
+      'max-lines-per-function': ['warn', 80],
+      'max-depth': ['error', 4],
+      'no-nested-ternary': 'error',
+      // File naming
       'unicorn/filename-case': [
         'error',
         {
