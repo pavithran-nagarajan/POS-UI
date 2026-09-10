@@ -2,8 +2,8 @@ import { Component, ElementRef, AfterViewInit, OnDestroy, inject, ChangeDetectio
 import { CommonModule } from '@angular/common';
 import { OverlayScrollbars } from 'overlayscrollbars';
 import { SidebarStateService } from '../../core/services/sidebar-state';
-import { MenuItem } from '../../core/models/menu-item.model';
-import { SIDEBAR_MENU } from '../../core/data/sidebar-menu.data';
+import { MenuItem } from './sidebar.model';
+import { SIDEBAR_MENU } from './sidebar.data';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -14,6 +14,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './sidebar.scss',
 })
 export class Sidebar implements AfterViewInit, OnDestroy {
+
   menuItems: MenuItem[] = SIDEBAR_MENU;
 
   private osInstance?: OverlayScrollbars;

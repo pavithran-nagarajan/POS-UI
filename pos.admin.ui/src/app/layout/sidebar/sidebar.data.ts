@@ -1,4 +1,4 @@
-import { MenuItem } from '../models/menu-item.model';
+import { MenuItem } from './sidebar.model';
 
 export const SIDEBAR_MENU: MenuItem[] = [
     {
