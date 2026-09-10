@@ -12,12 +12,12 @@ export const routes: Routes = [
       {
         path: 'login',
         loadComponent: () =>
-          import('./pages/login/login').then(m => m.LoginComponent)
+          import('./features/login/login').then(m => m.LoginComponent)
       },
       {
         path: 'not-found',
         loadComponent: () =>
-          import('./pages/not-found/not-found').then(m => m.NotFoundComponent)
+          import('./features/not-found/not-found').then(m => m.NotFoundComponent)
       }
     ]
   },
@@ -29,12 +29,12 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadComponent: () =>
-          import('./pages/dashboard/dashboard').then(m => m.DashboardComponent)
+          import('./features/dashboard/dashboard').then(m => m.DashboardComponent)
       },
       {
         path: 'company',
         loadComponent: () =>
-          import('./pages/configuration/company/company').then(m => m.Company)
+          import('./features/configuration/company/company').then(m => m.Company)
       }
     ]
   },
