@@ -59,6 +59,10 @@ export default defineConfig([
       'max-lines-per-function': ['warn', 80],
       'max-depth': ['error', 4],
       'no-nested-ternary': 'error',
+      // Unused / dead code
+      '@typescript-eslint/no-unused-vars': 'error',
+      '@typescript-eslint/no-floating-promises': 'error',
+      '@typescript-eslint/no-misused-promises': 'error',
       // File naming
       'unicorn/filename-case': [
         'error',

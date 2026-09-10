@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
 
   onLogout(): void {
     this.auth.logout();
-    this.router.navigate(['/login']);
+    void this.router.navigate(['/login']);
   }
 
   private loadDashboardData(): void {
