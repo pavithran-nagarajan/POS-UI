@@ -2,76 +2,76 @@ import { MenuItem } from './sidebar.model';
 
 export const SIDEBAR_MENU: MenuItem[] = [
     {
-        label: 'Dashboard', link: '/dashboard', icon: 'bi-speedometer', active: true, open: true
+        active: true, icon: 'bi-speedometer', label: 'Dashboard', link: '/dashboard', open: true
     },
     {
-        label: 'Configuration', icon: 'bi-gear',
         children: [
-            { label: 'Company', link: '/company', icon: 'bi-building' },
-            { label: 'Brand', link: '/brand', icon: 'bi-tags' },
-            { label: 'Outlet', link: './outlet', icon: 'bi-shop' },
+            { icon: 'bi-building', label: 'Company', link: '/company' },
+            { icon: 'bi-tags', label: 'Brand', link: '/brand' },
+            { icon: 'bi-shop', label: 'Outlet', link: './outlet' },
             {
-                label: 'Module', icon: 'bi-puzzle',
                 children: [
-                    { label: 'POS', link: '/pos', icon: 'bi-cash-coin' },
-                    { label: 'QR Order', link: './qr-order', icon: 'bi-qr-code-scan' },
-                    { label: 'Online', link: './online', icon: 'bi-globe' },
-                    { label: 'KIOSK', link: './kiosk', icon: 'bi-tablet' },
-                    { label: 'Delivery Partner', link: './delivery-partner', icon: 'bi-truck' },
-                    { label: 'KDS', link: './kds', icon: 'bi-fire' },
-                    { label: 'Number Display', link: './number-display', icon: 'bi-tv' }
-                ]
+                    { icon: 'bi-cash-coin', label: 'POS', link: '/pos' },
+                    { icon: 'bi-qr-code-scan', label: 'QR Order', link: './qr-order' },
+                    { icon: 'bi-globe', label: 'Online', link: './online' },
+                    { icon: 'bi-tablet', label: 'KIOSK', link: './kiosk' },
+                    { icon: 'bi-truck', label: 'Delivery Partner', link: './delivery-partner' },
+                    { icon: 'bi-fire', label: 'KDS', link: './kds' },
+                    { icon: 'bi-tv', label: 'Number Display', link: './number-display' }
+                ], icon: 'bi-puzzle',
+                label: 'Module'
             },
             {
-                label: 'Master Data', icon: 'bi-shop',
                 children: [
-                    { label: 'Country', link: '/country', icon: 'bi-flag' },
-                    { label: 'Currency', link: './currency', icon: 'bi-currency-exchange' },
-                    { label: 'Language', link: './language', icon: 'bi-translate' },
-                    { label: 'Order Type', link: './order-type', icon: 'bi-list-check' },
-                    { label: 'Service Hours', link: './service-hours', icon: 'bi-clock' },
-                    { label: 'Role', link: './role', icon: 'bi-person-badge' }
-                ]
+                    { icon: 'bi-flag', label: 'Country', link: '/country' },
+                    { icon: 'bi-currency-exchange', label: 'Currency', link: './currency' },
+                    { icon: 'bi-translate', label: 'Language', link: './language' },
+                    { icon: 'bi-list-check', label: 'Order Type', link: './order-type' },
+                    { icon: 'bi-clock', label: 'Service Hours', link: './service-hours' },
+                    { icon: 'bi-person-badge', label: 'Role', link: './role' }
+                ], icon: 'bi-shop',
+                label: 'Master Data'
             },
-            { label: 'User', link: '/user', icon: 'bi-person' }
-        ]
+            { icon: 'bi-person', label: 'User', link: '/user' }
+        ], icon: 'bi-gear',
+        label: 'Configuration'
     },
     {
-        label: 'Product', icon: 'bi-box-seam',
         children: [
-            { label: 'Product Group', link: '/product-group', icon: 'bi-collection' },
-            { label: 'Product', link: './product', icon: 'bi-box' }
-        ]
+            { icon: 'bi-collection', label: 'Product Group', link: '/product-group' },
+            { icon: 'bi-box', label: 'Product', link: './product' }
+        ], icon: 'bi-box-seam',
+        label: 'Product'
     },
     {
-        label: 'CRM', icon: 'bi-person-vcard',
         children: [
-            { label: 'Customer', link: '/customer', icon: 'bi-people' },
-            { label: 'Promotion', link: './promotion', icon: 'bi-megaphone' },
-            { label: 'Customer Package', link: './customer-package', icon: 'bi-boxes' },
-        ]
+            { icon: 'bi-people', label: 'Customer', link: '/customer' },
+            { icon: 'bi-megaphone', label: 'Promotion', link: './promotion' },
+            { icon: 'bi-boxes', label: 'Customer Package', link: './customer-package' },
+        ], icon: 'bi-person-vcard',
+        label: 'CRM'
     },
-    { label: 'Orders', link: './orders', icon: 'bi-bag-check' },
+    { icon: 'bi-bag-check', label: 'Orders', link: './orders' },
     {
-        label: 'Report', icon: 'bi-bar-chart',
         children: [
-            { label: 'Daily Sales', link: '/daily-sales-report', icon: 'bi-graph-up' },
-            { label: 'Product Sales', link: './product-sales-report', icon: 'bi-basket' },
-            { label: 'Customer Sales', link: './customer-sales-report', icon: 'bi-people' },
+            { icon: 'bi-graph-up', label: 'Daily Sales', link: '/daily-sales-report' },
+            { icon: 'bi-basket', label: 'Product Sales', link: './product-sales-report' },
+            { icon: 'bi-people', label: 'Customer Sales', link: './customer-sales-report' },
             {
-                label: 'Voided Report', icon: 'bi-x-circle',
                 children: [
-                    { label: 'Voided Transaction', link: '/voided-transaction-report', icon: 'bi-receipt' },
-                    { label: 'Voided Product', link: './voided-product-report', icon: 'bi-box-fill' }
-                ]
+                    { icon: 'bi-receipt', label: 'Voided Transaction', link: '/voided-transaction-report' },
+                    { icon: 'bi-box-fill', label: 'Voided Product', link: './voided-product-report' }
+                ], icon: 'bi-x-circle',
+                label: 'Voided Report'
             }
-        ]
+        ], icon: 'bi-bar-chart',
+        label: 'Report'
     },
     {
-        label: 'ERP', icon: 'bi-diagram-3',
         children: [
-            { label: 'Quick Books', link: '/quick-books', icon: 'bi-circle' },
-            { label: 'Xero', link: '/xero', icon: 'bi-circle' }
-        ]
+            { icon: 'bi-circle', label: 'Quick Books', link: '/quick-books' },
+            { icon: 'bi-circle', label: 'Xero', link: '/xero' }
+        ], icon: 'bi-diagram-3',
+        label: 'ERP'
     }
 ];

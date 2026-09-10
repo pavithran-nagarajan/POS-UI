@@ -1,18 +1,11 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterLink],
   selector: 'app-not-found',
   standalone: true,
-  imports: [RouterLink],
-  template: `
-    <div class="not-found">
-      <h1>404</h1>
-      <p>Sorry, the page you're looking for doesn't exist.</p>
-      <a routerLink="/">Go back home</a>
-    </div>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
       .not-found {
@@ -25,5 +18,12 @@ import { RouterLink } from '@angular/router';
       }
     `,
   ],
+  template: `
+    <div class="not-found">
+      <h1>404</h1>
+      <p>Sorry, the page you're looking for doesn't exist.</p>
+      <a routerLink="/">Go back home</a>
+    </div>
+  `,
 })
 export class NotFoundComponent {}

@@ -6,38 +6,38 @@ import { MainLayout } from './layout/main-layout/main-layout';
 export const routes: Routes = [
   // Public area — auth layout (blank chrome)
   {
-    path: '',
-    component: AuthLayout,
     children: [
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: '', pathMatch: 'full', redirectTo: 'login' },
       {
-        path: 'login',
         loadComponent: () =>
-          import('./features/login/login').then(m => m.LoginComponent)
+          import('./features/login/login').then(m => m.LoginComponent),
+        path: 'login'
       },
       {
-        path: 'not-found',
         loadComponent: () =>
-          import('./features/not-found/not-found').then(m => m.NotFoundComponent)
+          import('./features/not-found/not-found').then(m => m.NotFoundComponent),
+        path: 'not-found'
       }
-    ]
+    ],
+    component: AuthLayout,
+    path: ''
   },
   // Protected area — main layout (nav + sidebar)
   {
-    path: '',
-    component: MainLayout,
     children: [
       {
-        path: 'dashboard',
         loadComponent: () =>
-          import('./features/dashboard/dashboard').then(m => m.DashboardComponent)
+          import('./features/dashboard/dashboard').then(m => m.DashboardComponent),
+        path: 'dashboard'
       },
       {
-        path: 'company',
         loadComponent: () =>
-          import('./features/configuration/company/company').then(m => m.Company)
+          import('./features/configuration/company/company').then(m => m.Company),
+        path: 'company'
       }
-    ]
+    ],
+    component: MainLayout,
+    path: ''
   },
   { path: '**', redirectTo: 'not-found' }
 ];

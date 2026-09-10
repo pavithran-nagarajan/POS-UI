@@ -1,30 +1,30 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../core/services/auth';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ReactiveFormsModule, CommonModule],
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './login.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './login.scss',
+  templateUrl: './login.html',
 })
 export class LoginComponent {
-  private fb = inject(FormBuilder);
-  private auth = inject(AuthService);
-  private router = inject(Router);
-
-  isLoading = false;
   errorMessage = '';
+  isLoading = false;
+  private fb = inject(FormBuilder);
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
+  private auth = inject(AuthService);
+
+  private router = inject(Router);
 
   onSubmit(): void {
     if (this.loginForm.invalid) {
@@ -37,11 +37,11 @@ export class LoginComponent {
     const { email, password } = this.loginForm.getRawValue();
 
     this.auth.login(email!, password!).subscribe({
-      next: () => this.router.navigate(['/dashboard']),
       error: (err) => {
         this.errorMessage = err?.error?.message || 'Invalid credentials';
         this.isLoading = false;
       },
+      next: () => this.router.navigate(['/dashboard']),
     });
   }
 }

@@ -1,20 +1,20 @@
-import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 
 import { DataGrid } from '../../../shared/components/data-grid/data-grid';
 import {
-  EditActionRenderer,
   EditActionCellRendererParams,
+  EditActionRenderer,
 } from '../../../shared/components/grid-action-buttons/edit-action-renderer/edit-action-renderer';
 import { GridToolbar } from '../../../shared/components/grid-toolbar/grid-toolbar';
 import { CompanyState, PageState } from './company.model';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [DataGrid, GridToolbar],
   selector: 'app-company',
   standalone: true,
-  imports: [DataGrid, GridToolbar],
-  templateUrl: './company.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './company.scss',
+  templateUrl: './company.html',
 })
 export class Company implements OnInit {
   @ViewChild(DataGrid) grid!: DataGrid<CompanyState>;
@@ -29,27 +29,39 @@ export class Company implements OnInit {
     this.bindGrid();
   }
 
+  onAddCompany(): void {
+    alert('Add');
+  }
+
+  onEditCompany(company: CompanyState): void {
+    alert(company);
+  }
+
+  onSearchChange(value: string): void {
+    this.grid.applyQuickFilter(value);
+  }
+
   private bindGrid(): void {
     //define column
     this.pageState.gridState.companyGrid.columnDefs = [
       {
         field: 'companyName',
+        filter: true,
         headerName: 'Company Name',
         minWidth: 200,
         sortable: true,
-        filter: true,
       },
       {
-        headerName: 'Action',
-        maxWidth: 150,
-        sortable: false,
-        filter: false,
-        getQuickFilterText: () => '',
         cellRenderer: EditActionRenderer,
         cellRendererParams: {
           onEdit: (data: CompanyState) => this.onEditCompany(data),
           title: 'Edit Company',
         } as EditActionCellRendererParams,
+        filter: false,
+        getQuickFilterText: () => '',
+        headerName: 'Action',
+        maxWidth: 150,
+        sortable: false,
       },
     ];
 
@@ -76,17 +88,5 @@ export class Company implements OnInit {
       { companyId: '19', companyName: 'Prestige Worldwide', isActive: true },
       { companyId: '20', companyName: 'Dunder Mifflin', isActive: true },
     ];
-  }
-
-  onEditCompany(company: CompanyState): void {
-    alert(company);
-  }
-
-  onSearchChange(value: string): void {
-    this.grid.applyQuickFilter(value);
-  }
-
-  onAddCompany(): void {
-    alert('Add');
   }
 }

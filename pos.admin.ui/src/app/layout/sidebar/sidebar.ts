@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, AfterViewInit, OnDestroy, inject, ChangeDetectionStrategy, } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, OnDestroy, } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { OverlayScrollbars } from 'overlayscrollbars';
 
@@ -8,20 +8,20 @@ import { SIDEBAR_MENU } from './sidebar.data';
 import { MenuItem } from './sidebar.model';
 
 @Component({
-  selector: 'app-sidebar',
-  imports: [CommonModule, RouterLink, RouterLinkActive],
-  templateUrl: './sidebar.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule, RouterLink, RouterLinkActive],
+  selector: 'app-sidebar',
   styleUrl: './sidebar.scss',
+  templateUrl: './sidebar.html',
 })
 export class Sidebar implements AfterViewInit, OnDestroy {
 
   menuItems: MenuItem[] = SIDEBAR_MENU;
 
-  private osInstance?: OverlayScrollbars;
-
-  private readonly sidebarState = inject(SidebarStateService);
   private readonly elRef = inject(ElementRef);
+
+  private osInstance?: OverlayScrollbars;
+  private readonly sidebarState = inject(SidebarStateService);
 
   closeSidebar(): void {
     this.sidebarState.close();
@@ -34,9 +34,9 @@ export class Sidebar implements AfterViewInit, OnDestroy {
     if (sidebarWrapper && !isMobile) {
       this.osInstance = OverlayScrollbars(sidebarWrapper, {
         scrollbars: {
-          theme: 'os-theme-light',
           autoHide: 'leave',
           clickScroll: true,
+          theme: 'os-theme-light',
         },
       });
     }

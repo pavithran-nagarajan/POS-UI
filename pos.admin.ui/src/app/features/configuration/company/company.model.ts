@@ -1,8 +1,9 @@
 import { ColDef } from "ag-grid-community";
 
-interface CompanyGridState {
-  columnDefs: ColDef<CompanyState>[];
-  rowData: CompanyState[];
+export interface CompanyState {
+  companyId: string;
+  companyName: string;
+  isActive: boolean;
 }
 
 export interface PageState {
@@ -11,8 +12,7 @@ export interface PageState {
   };
 }
 
-export interface CompanyState {
-  companyId: string;
-  companyName: string;
-  isActive: boolean;
+interface CompanyGridState {
+  columnDefs: ColDef<CompanyState>[];
+  rowData: CompanyState[];
 }

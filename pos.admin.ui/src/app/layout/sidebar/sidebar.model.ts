@@ -1,10 +1,10 @@
 export interface MenuItem {
+  active?: boolean;
+  badge?: string;
+  children?: MenuItem[];
+  header?: boolean;
+  icon?: string;
   label: string;
   link?: string;
-  icon?: string;
-  badge?: string;
-  header?: boolean;
-  active?: boolean;
   open?: boolean;
-  children?: MenuItem[];
 }
