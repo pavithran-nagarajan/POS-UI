@@ -1,11 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   Input,
-  OnInit,
-  Output,
 } from '@angular/core';
+import { outputFromObservable } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
@@ -17,23 +15,26 @@ import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
   styleUrl: './search-box.scss',
   templateUrl: './search-box.html',
 })
-export class SearchBox implements OnInit {
+export class SearchBox {
   @Input() debounceMs = 0;
   @Input() placeholder = 'Search';
-  @Output() searchChange = new EventEmitter<string>();
+
+  private searchTextSubject = new Subject<string>();
+
+  // No subscribe() — outputFromObservable subscribes internally
+  // and tears down automatically on destroy.
+  searchChange = outputFromObservable(
+    this.searchTextSubject.pipe(
+      debounceTime(this.debounceMs),
+      distinctUntilChanged(),
+    ),
+  );
 
   searchText = '';
-  private searchTextSubject = new Subject<string>();
 
   clear() {
     this.searchText = '';
     this.searchTextSubject.next('');
-  }
-
-  ngOnInit() {
-    this.searchTextSubject
-      .pipe(debounceTime(this.debounceMs), distinctUntilChanged())
-      .subscribe((value) => this.searchChange.emit(value));
   }
 
   onInput() {

@@ -9,6 +9,7 @@ import unicorn from 'eslint-plugin-unicorn';
 import checkFile from 'eslint-plugin-check-file';
 import boundaries from 'eslint-plugin-boundaries';
 import perfectionist from 'eslint-plugin-perfectionist';
+import rxjsAngularX from 'eslint-plugin-rxjs-angular-x';
 
 // __dirname doesn't exist in ESM — reconstruct it
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
@@ -27,6 +28,7 @@ export default defineConfig([
       'check-file': checkFile,
       boundaries,
       perfectionist,
+      'rxjs-angular-x': rxjsAngularX,
     },
     extends: [
       eslint.configs.recommended,
@@ -64,6 +66,17 @@ export default defineConfig([
       '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-misused-promises': 'error',
+      // RxJS + Angular (subscription lifecycle)
+      'rxjs-angular-x/prefer-async-pipe': 'error',
+      'rxjs-angular-x/prefer-takeuntil': [
+        'error',
+        {
+          checkComplete: true,
+          checkDecorators: ["Component", "Directive", "Injectable"],
+          alias: ["takeUntilDestroyed"],
+          checkDestroy: false,
+        },
+      ],
       // File naming
       'unicorn/filename-case': [
         'error',
