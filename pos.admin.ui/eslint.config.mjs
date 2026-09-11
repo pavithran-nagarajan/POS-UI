@@ -10,11 +10,17 @@ import checkFile from 'eslint-plugin-check-file';
 import boundaries from 'eslint-plugin-boundaries';
 import perfectionist from 'eslint-plugin-perfectionist';
 import rxjsAngularX from 'eslint-plugin-rxjs-angular-x';
+import globals from 'globals';
 
 // __dirname doesn't exist in ESM — reconstruct it
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig([
+  {
+    ignores: [
+      'dist/**', 'coverage/**', '.angular/**', 'node_modules/**'
+    ]
+  },
   {
     files: ['**/*.ts'],
     plugins: {
@@ -31,6 +37,7 @@ export default defineConfig([
       tseslint.configs.stylisticTypeChecked,
     ],
     languageOptions: {
+      globals: { ...globals.browser, ...globals.node },
       parserOptions: {
         projectService: true,
         tsconfigRootDir: __dirname,
@@ -50,9 +57,6 @@ export default defineConfig([
         },
       },
     },
-    ignores: [
-      'dist/**', 'coverage/**', '.angular/**', 'node_modules/**'
-    ],
     rules: {
       // No console & no debigger
       'no-console': 'error',
@@ -375,5 +379,13 @@ export default defineConfig([
     files: ['**/*.html'],
     extends: [angular.configs.templateRecommended, angular.configs.templateAccessibility],
     rules: {},
+  },
+  {
+    files: ['**/*.spec.ts'],
+    languageOptions: { globals: globals.jasmine },
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      'max-lines-per-function': 'off',
+    },
   },
 ]);
