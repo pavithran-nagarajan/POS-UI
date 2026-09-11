@@ -125,6 +125,9 @@ export default defineConfig([
         'error',
         { "accessibility": "no-public" },
       ],
+      '@typescript-eslint/no-unnecessary-condition': 'error',
+      // Type-safety rules
+      '@typescript-eslint/promise-function-async': 'error',
       // RxJS + Angular (subscription lifecycle)
       'rxjs-angular-x/prefer-async-pipe': 'error',
       'rxjs-angular-x/prefer-takeuntil': [

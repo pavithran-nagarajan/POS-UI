@@ -21,8 +21,6 @@ export class SearchBox {
 
   private searchTextSubject = new Subject<string>();
 
-  // No subscribe() — outputFromObservable subscribes internally
-  // and tears down automatically on destroy.
   searchChange = outputFromObservable(
     this.searchTextSubject.pipe(
       debounceTime(this.debounceMs),

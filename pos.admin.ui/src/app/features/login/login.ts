@@ -34,16 +34,13 @@ interface ApiErrorBody {
 export class LoginComponent {
   errorMessage = '';
   isLoading = false;
-
-  private fb = inject(FormBuilder).nonNullable;
-  loginForm = this.fb.group({
+  loginForm = inject(FormBuilder).nonNullable.group({
     email: ['', [required, emailFormat]],
     password: ['', [required, Validators.minLength(6)]],
   });
+
   private auth = inject(AuthService);
-
   private router = inject(Router);
-
   private submit$ = new Subject<{ email: string; password: string }>();
 
   private loginResult = toSignal(

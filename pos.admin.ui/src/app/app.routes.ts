@@ -3,36 +3,49 @@ import { type Routes } from '@angular/router';
 import { AuthLayout } from './layout/auth-layout/auth-layout';
 import { MainLayout } from './layout/main-layout/main-layout';
 
+function lazy<TModule, TExport>(
+  loader: () => Promise<TModule>,
+  pick: (m: TModule) => TExport
+): () => Promise<TExport> {
+  return async () => pick(await loader());
+}
+
 export const routes: Routes = [
-  // Public area — auth layout (blank chrome)
   {
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'login' },
       {
-        loadComponent: () =>
-          import('./features/login/login').then(m => m.LoginComponent),
+        loadComponent: lazy(
+          async () => import('./features/login/login'),
+          m => m.LoginComponent
+        ),
         path: 'login'
       },
       {
-        loadComponent: () =>
-          import('./features/not-found/not-found').then(m => m.NotFoundComponent),
+        loadComponent: lazy(
+          async () => import('./features/not-found/not-found'),
+          m => m.NotFoundComponent
+        ),
         path: 'not-found'
       }
     ],
     component: AuthLayout,
     path: ''
   },
-  // Protected area — main layout (nav + sidebar)
   {
     children: [
       {
-        loadComponent: () =>
-          import('./features/dashboard/dashboard').then(m => m.DashboardComponent),
+        loadComponent: lazy(
+          async () => import('./features/dashboard/dashboard'),
+          m => m.DashboardComponent
+        ),
         path: 'dashboard'
       },
       {
-        loadComponent: () =>
-          import('./features/configuration/company/company').then(m => m.Company),
+        loadComponent: lazy(
+          async () => import('./features/configuration/company/company'),
+          m => m.Company
+        ),
         path: 'company'
       }
     ],
