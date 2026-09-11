@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, OnDestroy, } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  inject,
+  OnDestroy,
+} from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { OverlayScrollbars } from 'overlayscrollbars';
 
@@ -15,10 +22,9 @@ import { MenuItem } from './sidebar.model';
   templateUrl: './sidebar.html',
 })
 export class Sidebar implements AfterViewInit, OnDestroy {
-
   menuItems: MenuItem[] = SIDEBAR_MENU;
 
-  private readonly elRef = inject(ElementRef);
+  private readonly elRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   private osInstance?: OverlayScrollbars;
   private readonly sidebarState = inject(SidebarStateService);
@@ -29,7 +35,8 @@ export class Sidebar implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     const isMobile = window.innerWidth <= 992;
-    const sidebarWrapper = this.elRef.nativeElement.querySelector('.sidebar-wrapper');
+    const sidebarWrapper: HTMLElement | null =
+      this.elRef.nativeElement.querySelector<HTMLElement>('.sidebar-wrapper');
 
     if (sidebarWrapper && !isMobile) {
       this.osInstance = OverlayScrollbars(sidebarWrapper, {

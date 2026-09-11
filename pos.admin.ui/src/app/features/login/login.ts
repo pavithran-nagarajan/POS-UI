@@ -1,11 +1,27 @@
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  ReactiveFormsModule,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, exhaustMap, of, Subject, tap } from 'rxjs';
 
 import { AuthService } from '../../core/services/auth';
+
+const required = (control: AbstractControl): null | ValidationErrors =>
+  Validators.required(control);
+const email = (control: AbstractControl): null | ValidationErrors =>
+  Validators.email(control);
+
+interface ApiErrorBody {
+  message?: string;
+}
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,8 +37,8 @@ export class LoginComponent {
 
   private fb = inject(FormBuilder);
   loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    email: ['', [required, email]],
+    password: ['', [required, Validators.minLength(6)]],
   });
   private auth = inject(AuthService);
 
@@ -30,7 +46,6 @@ export class LoginComponent {
 
   private submit$ = new Subject<{ email: string; password: string }>();
 
-  // toSignal subscribes eagerly and tears down automatically via DestroyRef.
   private loginResult = toSignal(
     this.submit$.pipe(
       exhaustMap(({ email, password }) => {
@@ -42,15 +57,28 @@ export class LoginComponent {
             this.isLoading = false;
             void this.router.navigate(['/dashboard']);
           }),
-          catchError((err) => {
+          catchError((err: HttpErrorResponse) => {
             this.isLoading = false;
-            this.errorMessage = err?.error?.message || 'Invalid credentials';
+            this.errorMessage = this.getErrorMessage(err);
             return of(null);
           }),
         );
       }),
     ),
   );
+
+  getErrorMessage(err: HttpErrorResponse): string {
+    const body: unknown = err.error;
+    if (
+      typeof body === 'object' &&
+      body !== null &&
+      'message' in body &&
+      typeof (body as ApiErrorBody).message === 'string'
+    ) {
+      return (body as ApiErrorBody).message!;
+    }
+    return 'Invalid credentials';
+  }
 
   onSubmit(): void {
     if (this.loginForm.invalid) {

@@ -16,6 +16,11 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig([
   {
+    ignores: [
+      'dist/**', 'coverage/**', '.angular/**', 'node_modules/**'
+    ]
+  },
+  {
     rules: {
       'no-console': 'error',
       'no-debugger': 'error'
@@ -35,6 +40,8 @@ export default defineConfig([
       tseslint.configs.recommended,
       tseslint.configs.stylistic,
       angular.configs.tsRecommended,
+      tseslint.configs.recommendedTypeChecked,
+      tseslint.configs.stylisticTypeChecked,
     ],
     languageOptions: {
       parserOptions: {
