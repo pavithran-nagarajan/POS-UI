@@ -83,9 +83,24 @@ export default defineConfig([
       '@typescript-eslint/no-unsafe-member-access': 'error',
       '@typescript-eslint/no-unsafe-return': 'error',
       '@typescript-eslint/no-unsafe-argument': 'error',
+      '@typescript-eslint/no-unnecessary-type-assertion': 'error',
+      '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
+      '@typescript-eslint/no-unnecessary-qualifier': 'error',
+      '@typescript-eslint/no-unnecessary-type-arguments': 'error',
+      '@typescript-eslint/require-await': 'error',
+      '@typescript-eslint/return-await': ['error', 'in-try-catch'],
       // No console & no debigger
       'no-console': 'error',
       'no-debugger': 'error',
+      'no-constant-condition': 'error',
+      'no-duplicate-imports': 'error',
+      'no-self-assign': 'error',
+      'no-self-compare': 'error',
+      'no-unreachable': 'error',
+      'no-unreachable-loop': 'error',
+      'no-use-before-define': 'error',
+      'no-return-assign': 'error',
+      'no-throw-literal': 'error',
       // No secrets
       'no-secrets/no-secrets': [
         'error',
@@ -428,7 +443,10 @@ export default defineConfig([
   },
   {
     files: ['**/*.html'],
-    extends: [angular.configs.templateRecommended, angular.configs.templateAccessibility],
+    extends: [
+      angular.configs.templateRecommended,
+      angular.configs.templateAccessibility
+    ],
     rules: {},
   },
   {

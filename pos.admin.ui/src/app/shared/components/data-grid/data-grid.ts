@@ -17,7 +17,7 @@ import {
 
 import { environment } from '../../../../environments/environment';
 
-if (environment.production == false) {
+if (!environment.production) {
   enableDevValidations();
 }
 
