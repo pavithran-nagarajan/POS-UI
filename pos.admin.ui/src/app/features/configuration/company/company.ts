@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, type OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, type OnInit, viewChild } from '@angular/core';
 
 import type { CompanyState, PageState } from './company.model';
 
 import { DataGrid } from '../../../shared/components/data-grid/data-grid';
 import {
- type EditActionCellRendererParams,
+  type EditActionCellRendererParams,
   EditActionRenderer,
 } from '../../../shared/components/grid-action-buttons/edit-action-renderer/edit-action-renderer';
 import { GridToolbar } from '../../../shared/components/grid-toolbar/grid-toolbar';
@@ -18,7 +18,7 @@ import { GridToolbar } from '../../../shared/components/grid-toolbar/grid-toolba
   templateUrl: './company.html',
 })
 export class Company implements OnInit {
-  @ViewChild(DataGrid) grid!: DataGrid<CompanyState>;
+  readonly grid = viewChild.required<DataGrid<CompanyState>>(DataGrid);
 
   pageState: PageState = {
     gridState: {
@@ -39,7 +39,7 @@ export class Company implements OnInit {
   }
 
   onSearchChange(value: string): void {
-    this.grid.applyQuickFilter(value);
+    this.grid().applyQuickFilter(value);
   }
 
   private bindGrid(): void {

@@ -43,7 +43,7 @@ export class LoginComponent {
   private router = inject(Router);
   private submit$ = new Subject<{ email: string; password: string }>();
 
-  private loginResult = toSignal(
+  private readonly loginResult = toSignal(
     this.submit$.pipe(
       exhaustMap(({ email, password }) => {
         this.isLoading = true;

@@ -1,17 +1,17 @@
 <div class="grid-toolbar">
-  @if (canShowActionButton) {
+  @if (canShowActionButton()) {
     <app-button
-      [variant]="actionButtonVariant"
-      [name]="actionButtonName"
-      [icon]="actionButtonIcon"
-      [isDisabled]="isActionButtonDisabled"
+      [variant]="actionButtonVariant()"
+      [name]="actionButtonName()"
+      [icon]="actionButtonIcon()"
+      [isDisabled]="isActionButtonDisabled()"
       (buttonClick)="onActionClick($event)">
     </app-button>
   }
 
   <app-search-box
-    [placeholder]="searchPlaceholder"
-    [debounceMs]="debounceMs"
+    [placeholder]="searchPlaceholder()"
+    [debounceMs]="debounceMs()"
     (searchChange)="onSearchChange($event)">
   </app-search-box>
 </div>

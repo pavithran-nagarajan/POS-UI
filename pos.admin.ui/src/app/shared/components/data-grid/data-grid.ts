@@ -1,17 +1,17 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, input, Output } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import {
   CellStyleModule,
   ClientSideRowModelModule,
- type ColDef,
+  type ColDef,
   enableDevValidations,
- type GridApi,
- type GridReadyEvent,
+  type GridApi,
+  type GridReadyEvent,
   ModuleRegistry,
   PaginationModule,
   QuickFilterModule,
   TextFilterModule,
- type Theme,
+  type Theme,
   themeQuartz,
 } from 'ag-grid-community';
 
@@ -37,30 +37,32 @@ ModuleRegistry.registerModules([
   templateUrl: './data-grid.html',
 })
 export class DataGrid<TData> {
-  @Input({ required: true }) columnDefs!: ColDef<TData>[];
-  @Input() defaultColDef: ColDef<TData> = {
+  readonly columnDefs = input.required<ColDef<TData>[]>();
+  readonly defaultColDef = input<ColDef<TData>>({
     flex: 1,
     minWidth: 100,
     resizable: true,
-  };
-  @Input() domLayout: 'autoHeight' | 'normal' | undefined = 'autoHeight';
-  @Output() gridReady = new EventEmitter<GridReadyEvent<TData>>();
-  @Input() isPagination = true;
-  @Input() pageSize = 10;
-  @Input() pageSizeOptions = [10, 20, 50, 100];
-  @Input({ required: true }) rowData!: TData[];
-  @Input() theme: Theme = themeQuartz.withParams({
-    accentColor: '#0d6efd',
-    borderColor: '#dee2e6',
-    headerBackgroundColor: '#f8f9fa',
-    headerColumnBorder: { color: '#dee2e6' },
-    headerFontWeight: 600,
-    headerTextColor: '#495057',
-    oddRowBackgroundColor: '#ffff',
-    rowHoverColor: '#f1f3f5',
   });
+  readonly domLayout = input<'autoHeight' | 'normal' | undefined>('autoHeight');
+  @Output() gridReady = new EventEmitter<GridReadyEvent<TData>>();
+  readonly isPagination = input(true);
+  readonly pageSize = input(10);
+  readonly pageSizeOptions = input([10, 20, 50, 100]);
+  readonly rowData = input.required<TData[]>();
+  readonly theme = input<Theme>(
+    themeQuartz.withParams({
+      accentColor: '#0d6efd',
+      borderColor: '#dee2e6',
+      headerBackgroundColor: '#f8f9fa',
+      headerColumnBorder: { color: '#dee2e6' },
+      headerFontWeight: 600,
+      headerTextColor: '#495057',
+      oddRowBackgroundColor: '#ffff',
+      rowHoverColor: '#f1f3f5',
+    }),
+  );
 
-  @Input() width = '100%';
+  readonly width = input('100%');
 
   private gridApi!: GridApi<TData>;
 

@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input,
 } from '@angular/core';
 import { outputFromObservable } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
@@ -16,14 +16,14 @@ import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
   templateUrl: './search-box.html',
 })
 export class SearchBox {
-  @Input() debounceMs = 0;
-  @Input() placeholder = 'Search';
+  readonly debounceMs = input(0);
+  readonly placeholder = input('Search');
 
   private searchTextSubject = new Subject<string>();
 
   searchChange = outputFromObservable(
     this.searchTextSubject.pipe(
-      debounceTime(this.debounceMs),
+      debounceTime(this.debounceMs()),
       distinctUntilChanged(),
     ),
   );

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, input, Output } from '@angular/core';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -11,16 +11,16 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 })
 export class Button {
   @Output() buttonClick = new EventEmitter<Event>();
-  @Input() icon?: string;
-  @Input() iconPosition: 'left' | 'right' = 'left';
-  @Input() isDisabled = false;
-  @Input() name = '';
-  @Input() type: 'button' | 'reset' | 'submit' = 'button';
-
-  @Input() variant = 'primary';
+  
+  readonly icon = input<string>();
+  readonly iconPosition = input<'left' | 'right'>('left');
+  readonly isDisabled = input(false);
+  readonly name = input('');
+  readonly type = input<'button' | 'reset' | 'submit'>('button');
+  readonly variant = input('primary');
 
   handleClick(event: Event): void {
-    if (!this.isDisabled) {
+    if (!this.isDisabled()) {
       this.buttonClick.emit(event);
     }
   }

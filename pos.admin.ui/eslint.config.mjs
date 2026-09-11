@@ -351,6 +351,13 @@ export default defineConfig([
       '@angular-eslint/no-empty-lifecycle-method': ['error'],
       '@angular-eslint/prefer-on-push-component-change-detection': ['error'],
       '@angular-eslint/prefer-standalone': ['error'],
+      '@angular-eslint/prefer-signals': [
+        'error',
+        {
+          preferInputSignals: true,
+          preferReadonlySignalProperties: true
+        }
+      ],
       // --- Naming conventions ---
       '@typescript-eslint/naming-convention': [
         'error',

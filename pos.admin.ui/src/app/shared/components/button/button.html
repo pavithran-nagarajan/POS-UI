@@ -1,13 +1,13 @@
 <button
-  [type]="type"
-  [disabled]="isDisabled"
-  [class]="'btn btn-' + variant"
+  [type]="type()"
+  [disabled]="isDisabled()"
+  [class]="'btn btn-' + variant()"
   (click)="handleClick($event)">
-  @if (icon && iconPosition === 'left') {
+  @if (icon() && iconPosition() === 'left') {
     <i class="bi" [ngClass]="icon"></i>
   }
-  {{ name }}
-  @if (icon && iconPosition === 'right') {
+  {{ name() }}
+  @if (icon() && iconPosition() === 'right') {
     <i class="bi" [ngClass]="icon"></i>
   }
 </button>

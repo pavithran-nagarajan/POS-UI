@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, input, Output } from '@angular/core';
 
 import { Button } from '../button/button';
 import { SearchBox } from '../search-box/search-box';
@@ -13,17 +13,17 @@ import { SearchBox } from '../search-box/search-box';
   templateUrl: './grid-toolbar.html',
 })
 export class GridToolbar {
-  @Input() actionButtonIcon?: string;
-  @Input() actionButtonName = 'Add';
+  readonly actionButtonIcon = input<string>();
+  readonly actionButtonName = input('Add');
 
-  @Input() actionButtonVariant = 'primary';
+  readonly actionButtonVariant = input('primary');
   @Output() actionClick = new EventEmitter<Event>();
-  @Input() canShowActionButton = true;
-  @Input() debounceMs = 0;
-  @Input() isActionButtonDisabled = false;
+  readonly canShowActionButton = input(true);
+  readonly debounceMs = input(0);
+  readonly isActionButtonDisabled = input(false);
 
   @Output() searchChange = new EventEmitter<string>();
-  @Input() searchPlaceholder = 'Search';
+  readonly searchPlaceholder = input('Search');
 
   onActionClick(event: Event): void {
     this.actionClick.emit(event);
