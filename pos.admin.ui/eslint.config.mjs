@@ -95,6 +95,10 @@ export default defineConfig([
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-misused-promises': 'error',
       '@typescript-eslint/switch-exhaustiveness-check': 'error',
+      '@typescript-eslint/explicit-member-accessibility': [
+        'error',
+        { "accessibility": "no-public" },
+      ],
       // RxJS + Angular (subscription lifecycle)
       'rxjs-angular-x/prefer-async-pipe': 'error',
       'rxjs-angular-x/prefer-takeuntil': [
