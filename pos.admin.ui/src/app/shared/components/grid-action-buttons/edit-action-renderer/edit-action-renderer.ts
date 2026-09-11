@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NgbTooltip, PlacementArray } from '@ng-bootstrap/ng-bootstrap';
-import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams } from 'ag-grid-community';
+import { NgbTooltip, type PlacementArray } from '@ng-bootstrap/ng-bootstrap';
+import { type ICellRendererAngularComp } from 'ag-grid-angular';
+import { type ICellRendererParams } from 'ag-grid-community';
 
 export interface EditActionCellRendererParams<TData = unknown> extends ICellRendererParams {
   onEdit: (data: TData) => void;

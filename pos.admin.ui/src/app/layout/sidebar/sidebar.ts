@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common';
 import {
-  AfterViewInit,
+ type  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   inject,
-  OnDestroy,
+ type OnDestroy,
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { OverlayScrollbars } from 'overlayscrollbars';
 
 import { SidebarStateService } from '../../core/services/sidebar-state';
 import { SIDEBAR_MENU } from './sidebar.data';
-import { MenuItem } from './sidebar.model';
+import { type MenuItem } from './sidebar.model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

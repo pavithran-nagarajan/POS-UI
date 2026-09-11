@@ -16,17 +16,6 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig([
   {
-    ignores: [
-      'dist/**', 'coverage/**', '.angular/**', 'node_modules/**'
-    ]
-  },
-  {
-    rules: {
-      'no-console': 'error',
-      'no-debugger': 'error'
-    },
-  },
-  {
     files: ['**/*.ts'],
     plugins: {
       unicorn,
@@ -61,14 +50,35 @@ export default defineConfig([
         },
       },
     },
+    ignores: [
+      'dist/**', 'coverage/**', '.angular/**', 'node_modules/**'
+    ],
     rules: {
+      // No console & no debigger
+      'no-console': 'error',
+      'no-debugger': 'error',
       // Complexity/maintainability limits
       complexity: ['error', 10],
       'max-lines-per-function': ['warn', 80],
       'max-depth': ['error', 4],
       'no-nested-ternary': 'error',
       // Unused / dead code
-      '@typescript-eslint/no-unused-vars': 'error',
+      '@typescript-eslint/consistent-type-imports': ['error',
+        {
+          prefer: 'type-imports',
+          fixStyle: 'inline-type-imports'
+        }
+      ],
+      '@typescript-eslint/no-non-null-assertion': 'error',
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-misused-promises': 'error',
       // RxJS + Angular (subscription lifecycle)
@@ -130,20 +140,6 @@ export default defineConfig([
       ],
       // Sorting various data, such as objects, imports, TypeScript types, enums, JSX props, Svelte attributes, etc. alphabetically, naturally, or by line length.
       'perfectionist/sort-array-includes': [
-        'error',
-        {
-          type: 'natural',
-          order: 'asc',
-        },
-      ],
-      'perfectionist/sort-classes': [
-        'error',
-        {
-          type: 'natural',
-          order: 'asc',
-        },
-      ],
-      'perfectionist/sort-decorators': [
         'error',
         {
           type: 'natural',
@@ -300,6 +296,13 @@ export default defineConfig([
           style: 'kebab-case',
         },
       ],
+      '@angular-eslint/no-input-rename': ['error'],
+      '@angular-eslint/no-output-rename': ['error'],
+      '@angular-eslint/no-output-native': ['error'],
+      '@angular-eslint/no-output-on-prefix': ['error'],
+      '@angular-eslint/use-lifecycle-interface': ['error'],
+      '@angular-eslint/no-empty-lifecycle-method': ['error'],
+      '@angular-eslint/prefer-on-push-component-change-detection': ['error'],
       // --- Naming conventions ---
       '@typescript-eslint/naming-convention': [
         'error',

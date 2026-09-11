@@ -3,15 +3,15 @@ import { AgGridAngular } from 'ag-grid-angular';
 import {
   CellStyleModule,
   ClientSideRowModelModule,
-  ColDef,
+ type ColDef,
   enableDevValidations,
-  GridApi,
-  GridReadyEvent,
+ type GridApi,
+ type GridReadyEvent,
   ModuleRegistry,
   PaginationModule,
   QuickFilterModule,
   TextFilterModule,
-  Theme,
+ type Theme,
   themeQuartz,
 } from 'ag-grid-community';
 

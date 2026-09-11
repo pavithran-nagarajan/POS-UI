@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { HttpErrorResponse } from '@angular/common/http';
+import { type HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
-  AbstractControl,
+  type AbstractControl,
   FormBuilder,
   ReactiveFormsModule,
-  ValidationErrors,
+  type ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -35,7 +35,7 @@ export class LoginComponent {
   errorMessage = '';
   isLoading = false;
 
-  private fb = inject(FormBuilder);
+  private fb = inject(FormBuilder).nonNullable;
   loginForm = this.fb.group({
     email: ['', [required, email]],
     password: ['', [required, Validators.minLength(6)]],
@@ -68,14 +68,9 @@ export class LoginComponent {
   );
 
   getErrorMessage(err: HttpErrorResponse): string {
-    const body: unknown = err.error;
-    if (
-      typeof body === 'object' &&
-      body !== null &&
-      'message' in body &&
-      typeof (body as ApiErrorBody).message === 'string'
-    ) {
-      return (body as ApiErrorBody).message!;
+    const body = err.error as ApiErrorBody | null;
+    if (typeof body === 'object' && body !== null && typeof body.message === 'string') {
+      return body.message;
     }
     return 'Invalid credentials';
   }
@@ -87,6 +82,6 @@ export class LoginComponent {
     }
 
     const { email, password } = this.loginForm.getRawValue();
-    this.submit$.next({ email: email!, password: password! });
+    this.submit$.next({ email, password });
   }
 }

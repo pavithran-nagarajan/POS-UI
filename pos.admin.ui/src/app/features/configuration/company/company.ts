@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, type OnInit, ViewChild } from '@angular/core';
+
+import type { CompanyState, PageState } from './company.model';
 
 import { DataGrid } from '../../../shared/components/data-grid/data-grid';
 import {
-  EditActionCellRendererParams,
+ type EditActionCellRendererParams,
   EditActionRenderer,
 } from '../../../shared/components/grid-action-buttons/edit-action-renderer/edit-action-renderer';
 import { GridToolbar } from '../../../shared/components/grid-toolbar/grid-toolbar';
-import { CompanyState, PageState } from './company.model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
