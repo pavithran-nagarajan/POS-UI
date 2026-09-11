@@ -58,6 +58,15 @@ export default defineConfig([
       },
     },
     rules: {
+      // Fix for base no-shadow doesn't understand TS constructs, so this slips through
+      'no-shadow': 'off',
+      '@typescript-eslint/no-shadow': 'error',
+      // No-unsafe-* family
+      '@typescript-eslint/no-unsafe-assignment': 'error',
+      '@typescript-eslint/no-unsafe-call': 'error',
+      '@typescript-eslint/no-unsafe-member-access': 'error',
+      '@typescript-eslint/no-unsafe-return': 'error',
+      '@typescript-eslint/no-unsafe-argument': 'error',
       // No console & no debigger
       'no-console': 'error',
       'no-debugger': 'error',
@@ -85,6 +94,7 @@ export default defineConfig([
       ],
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-misused-promises': 'error',
+      '@typescript-eslint/switch-exhaustiveness-check': 'error',
       // RxJS + Angular (subscription lifecycle)
       'rxjs-angular-x/prefer-async-pipe': 'error',
       'rxjs-angular-x/prefer-takeuntil': [
@@ -307,6 +317,7 @@ export default defineConfig([
       '@angular-eslint/use-lifecycle-interface': ['error'],
       '@angular-eslint/no-empty-lifecycle-method': ['error'],
       '@angular-eslint/prefer-on-push-component-change-detection': ['error'],
+      '@angular-eslint/prefer-standalone': ['error'],
       // --- Naming conventions ---
       '@typescript-eslint/naming-convention': [
         'error',

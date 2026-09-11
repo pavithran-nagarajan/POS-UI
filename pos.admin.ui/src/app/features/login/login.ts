@@ -16,7 +16,7 @@ import { AuthService } from '../../core/services/auth';
 
 const required = (control: AbstractControl): null | ValidationErrors =>
   Validators.required(control);
-const email = (control: AbstractControl): null | ValidationErrors =>
+const emailFormat = (control: AbstractControl): null | ValidationErrors =>
   Validators.email(control);
 
 interface ApiErrorBody {
@@ -37,7 +37,7 @@ export class LoginComponent {
 
   private fb = inject(FormBuilder).nonNullable;
   loginForm = this.fb.group({
-    email: ['', [required, email]],
+    email: ['', [required, emailFormat]],
     password: ['', [required, Validators.minLength(6)]],
   });
   private auth = inject(AuthService);
