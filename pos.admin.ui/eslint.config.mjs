@@ -11,6 +11,8 @@ import boundaries from 'eslint-plugin-boundaries';
 import perfectionist from 'eslint-plugin-perfectionist';
 import rxjsAngularX from 'eslint-plugin-rxjs-angular-x';
 import globals from 'globals';
+import noSecrets from 'eslint-plugin-no-secrets';
+import json from '@eslint/json';
 
 // __dirname doesn't exist in ESM — reconstruct it
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
@@ -18,8 +20,21 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
 export default defineConfig([
   {
     ignores: [
-      'dist/**', 'coverage/**', '.angular/**', 'node_modules/**'
+      'dist/**', 'coverage/**', '.angular/**', 'node_modules/**',
+      'package-lock.json',
     ]
+  },
+  {
+    files: ['**/*.json'],
+    plugins: {
+      json,
+      'no-secrets': noSecrets
+    },
+    language: 'json/json',
+    rules: {
+      // No secrets
+      'no-secrets/no-secrets': 'error',
+    },
   },
   {
     files: ['**/*.ts'],
@@ -29,6 +44,7 @@ export default defineConfig([
       boundaries,
       perfectionist,
       'rxjs-angular-x': rxjsAngularX,
+      'no-secrets': noSecrets,
     },
     extends: [
       eslint.configs.recommended,
@@ -70,6 +86,16 @@ export default defineConfig([
       // No console & no debigger
       'no-console': 'error',
       'no-debugger': 'error',
+      // No secrets
+      'no-secrets/no-secrets': [
+        'error',
+        {
+          tolerance: 4.2,
+          ignoreIdentifiers: [
+            'HttpHeaders',
+          ],
+        },
+      ],
       // Complexity/maintainability limits
       complexity: ['error', 10],
       'max-lines-per-function': ['warn', 80],
