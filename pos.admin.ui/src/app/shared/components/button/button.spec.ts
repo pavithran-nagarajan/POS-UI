@@ -1,6 +1,7 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { type ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { Button } from './button';
 
 describe('Button', () => {
@@ -33,7 +34,7 @@ describe('Button', () => {
     fixture.detectChanges();
 
     const btn = fixture.debugElement.query(By.css('button')).nativeElement as HTMLButtonElement;
-    expect(btn.textContent?.trim()).toBe('Save');
+    expect(btn.textContent.trim()).toBe('Save');
   });
 
   it('should apply the correct variant class', () => {
