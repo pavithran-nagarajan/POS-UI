@@ -76,9 +76,10 @@ describe('GridToolbar', () => {
     fixture.detectChanges();
     const emitSpy = vi.spyOn(component.actionClick, 'emit');
 
-    component.onActionClick(new Event('click'));
+    const btn = fixture.debugElement.query(By.directive(Button));
 
-    expect(emitSpy).toHaveBeenCalledTimes(1);
+    expect(btn).toBeFalsy();
+    expect(emitSpy).not.toHaveBeenCalled();
   });
 
   it('should pass placeholder and debounceMs to the search box', () => {
