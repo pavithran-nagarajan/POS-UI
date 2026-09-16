@@ -18,7 +18,7 @@ export class Button {
   readonly name = input('');
   readonly type = input<'button' | 'reset' | 'submit'>('button');
   readonly variant = input('primary');
-  readonly test = input('primary');
+  readonly Test = input('primary');
 
   handleClick(event: Event): void {
     if (!this.isDisabled()) {
