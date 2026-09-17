@@ -4,11 +4,12 @@ import { provideRouter, RouterLink } from '@angular/router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { SidebarStateService } from '../../core/services/sidebar-state';
+import { Sidebar } from './sidebar';
 import { SIDEBAR_MENU } from './sidebar.data';
 import { type MenuItem } from './sidebar.model';
-import { Sidebar } from './sidebar';
 
 vi.mock('overlayscrollbars', () => ({
+  // eslint-disable-next-line @typescript-eslint/naming-convention -- mirrors the real third-party named export
   OverlayScrollbars: vi.fn(() => ({
     destroy: vi.fn(),
   })),
@@ -58,10 +59,10 @@ describe('Sidebar', () => {
     fixture.detectChanges();
     const labels = fixture.debugElement
       .queryAll(By.css('.sidebar-menu > .nav-item .nav-link p'))
-      .map((el) => (el.nativeElement as HTMLElement).textContent?.trim());
+      .map((el) => (el.nativeElement as HTMLElement).textContent.trim());
 
     for (const item of component.menuItems) {
-      expect(labels.some((label) => label?.startsWith(item.label))).toBe(true);
+      expect(labels.some((label) => label.startsWith(item.label))).toBe(true);
     }
   });
 
@@ -72,7 +73,9 @@ describe('Sidebar', () => {
     const routerLinkDirective = firstLinkDe.injector.get(RouterLink);
 
     expect(routerLinkDirective).toBeTruthy();
-    expect(firstLinkDe.nativeElement.getAttribute('href')).toBe(component.menuItems[0].link);
+    expect((firstLinkDe.nativeElement as HTMLElement).getAttribute('href')).toBe(
+      component.menuItems[0].link,
+    );
   });
 
   it('should render nested children in a nav-treeview when children exist', () => {
@@ -105,7 +108,7 @@ describe('Sidebar', () => {
 
     const badge = fixture.debugElement.query(By.css('.nav-badge'));
     expect(badge).toBeTruthy();
-    expect((badge.nativeElement as HTMLElement).textContent?.trim()).toBe('5');
+    expect((badge.nativeElement as HTMLElement).textContent.trim()).toBe('5');
   });
 
   it('should not render a badge when the item has none', () => {
@@ -135,7 +138,7 @@ describe('Sidebar', () => {
 
     const header = fixture.debugElement.query(By.css('.nav-header'));
     expect(header).toBeTruthy();
-    expect((header.nativeElement as HTMLElement).textContent?.trim()).toBe('Section Title');
+    expect((header.nativeElement as HTMLElement).textContent.trim()).toBe('Section Title');
 
     const link = fixture.debugElement.query(By.css('.nav-item .nav-link'));
     expect(link).toBeFalsy();
