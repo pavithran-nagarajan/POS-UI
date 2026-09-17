@@ -11,14 +11,13 @@ import { ChangeDetectionStrategy, Component, EventEmitter, input, Output } from 
 })
 export class Button {
   @Output() buttonClick = new EventEmitter<Event>();
-
+  
   readonly icon = input<string>();
   readonly iconPosition = input<'left' | 'right'>('left');
   readonly isDisabled = input(false);
   readonly name = input('');
   readonly type = input<'button' | 'reset' | 'submit'>('button');
   readonly variant = input('primary');
-  readonly tariant = input('primary');
 
   handleClick(event: Event): void {
     if (!this.isDisabled()) {
