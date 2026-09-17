@@ -2,7 +2,6 @@ name: pos.admin.ui CI/CD
 
 on:
   push:
-    branches: [ main ]
     paths:
       - 'pos.admin.ui/**'
   pull_request:
