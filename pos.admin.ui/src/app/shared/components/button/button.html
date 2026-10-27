@@ -1,5 +1,6 @@
 <button
   [type]="type()"
+  [disabled]="isDisabled()"
   [class]="'btn btn-' + variant()"
   (click)="handleClick($event)">
   @if (icon() && iconPosition() === 'left') {
